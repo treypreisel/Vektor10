@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+/*
+  Vektor10 design tokens — source of truth: DESIGN.md (canvas-reconciled).
+  Ink-muted is ink @ 65% (use text-ink/65); muted-on-ink-panel is bone-deep @ 65% (text-bone-deep/65).
+*/
+@theme {
+  /* Color — primary */
+  --color-teal: #2e926c;
+  --color-cta-green: #237b57;
+
+  /* Color — reserved secondary (undeployed; do not use without a deliberate decision) */
+  --color-cherry: #e5294b;
+  --color-sky: #6bb0d6;
+
+  /* Color — neutral */
+  --color-ink: #141413;
+  --color-ink-panel: #1e1e1e;
+  --color-ink-faint: #9a968e;
+  --color-dark-hairline: #302f2c;
+  --color-dark-grid: #403d38;
+  --color-bone: #f0eee5;
+  --color-bone-deep: #e6dbcb;
+  --color-bone-muted: #b5b2ab;
+
+  /* Type */
+  --font-display: "Cal Sans", ui-rounded, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Type scale (px values from canvas; rem-converted) */
+  --text-display: 2.375rem; /* 38 — hero headline only */
+  --text-headline: 2.875rem; /* 46 — section headings */
+  --text-title: 1.875rem; /* 30 — feature/card titles, article H2s */
+  --text-quote: 1.125rem; /* 18 — blockquotes ONLY */
+  --text-body: 0.9375rem; /* 15 — body, labels, eyebrows */
+  --text-control: 0.625rem; /* 10 — functional-button text ONLY */
+
+  /* Radii */
+  --radius-button: 8px;
+  --radius-card: 14px;
+  --radius-glass: 15px;
+  --radius-feature: 16px;
+
+  /* Elevation — graphic, not atmospheric */
+  --shadow-hard: -2px 4px 0 0 var(--color-ink);
+  --shadow-hard-inset: inset -2px 4px 0 0 var(--color-ink);
+  /* Counter-light pairs (the only blurred shadows in the system; light/green grounds only) */
+  --shadow-raised: inset -2px 4px 3px #f0eee5, -2px 4px 0 0 var(--color-ink);
+  --shadow-raised-on-ink: inset -2px 4px 3px #ffffff33, -2px 4px 0 0 var(--color-ink);
+  --shadow-punched: inset -2px 4px 0 0 var(--color-ink), -2px 4px 3px #f0eee5;
+
+  /* Motion (impeccable animate reference: 100/300/500 rule, exponential ease-out only) */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  ::selection {
+    background-color: var(--color-teal);
+    color: var(--color-bone);
+  }
+}
+
+@layer components {
+  /* Shadow-box button — the signature press (ANIMATIONS.md #2).
+     Wrapper reserves room for the shadow so layout never shifts. */
+  .btn-hard {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 14px 22px;
+    background-color: var(--color-teal);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: var(--text-control);
+    font-weight: 600;
+    line-height: 12px;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-button);
+    box-shadow: inset -1px 2px 1px #ffffff40, -2px 4px 0 0 var(--color-ink);
+    transition: transform 120ms var(--ease-out-quart), box-shadow 120ms var(--ease-out-quart);
+    cursor: pointer;
+  }
+  .btn-hard:hover {
+    transform: translate(-1px, 2px);
+    box-shadow: inset -1px 2px 1px #ffffff40, -1px 2px 0 0 var(--color-ink);
+  }
+  .btn-hard:active {
+    transform: translate(-2px, 4px);
+    box-shadow: inset -1px 2px 1px #ffffff40, 0 0 0 0 var(--color-ink);
+  }
+
+  /* Text inputs — hero email-form chrome */
+  .input-hard {
+    width: 100%;
+    padding: 14px 18px;
+    background-color: #ffffff;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-button);
+    font-family: var(--font-mono);
+    font-size: var(--text-control);
+    font-weight: 500;
+    line-height: 12px;
+    color: var(--color-ink);
+    transition: border-color 150ms var(--ease-out-quart);
+  }
+  .input-hard::placeholder {
+    color: var(--color-ink-faint);
+  }
+  .input-hard:focus {
+    outline: none;
+    border-color: var(--color-teal);
+  }
+
+  /* Bracket eyebrow — deliberate brand system, case-by-case placement (never every section) */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-body);
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
