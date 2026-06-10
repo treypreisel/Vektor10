@@ -1,0 +1,74 @@
+---
+import wordmark from '../assets/vektor10-wordmark.svg?raw';
+
+// Sticky glass nav (animation spec, Trey's added row: locks to top and follows scroll).
+const links = [
+  { label: 'Home', href: '/' },
+  { label: 'Tech', href: '/technology' },
+  { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blog' },
+];
+---
+
+<header class="sticky top-0 z-50 flex w-full justify-center px-4 pt-4 sm:px-10 sm:pt-[26px]">
+  <nav
+    class="relative flex w-full max-w-[1360px] items-center justify-between rounded-glass border-2 border-ink bg-white/60 py-3 pl-[22px] pr-3.5 backdrop-blur-[8px] backdrop-saturate-[1.2] [box-shadow:inset_-2px_4px_3px_#FFFFFF66,-2px_4px_0_0_#141413]"
+    aria-label="Main"
+  >
+    <div
+      class="pointer-events-none absolute inset-0 rounded-[13px] opacity-35 mix-blend-soft-light [background-image:url('/noise.png')] [background-size:200px_200px] [background-repeat:repeat]"
+      aria-hidden="true"
+    >
+    </div>
+
+    <a href="/" class="relative block h-[22px] w-[112px] shrink-0 [&_svg]:h-full [&_svg]:w-full" aria-label="Vektor10 home">
+      <Fragment set:html={wordmark} />
+    </a>
+
+    <ul class="relative hidden grow items-center justify-center gap-[30px] md:flex">
+      {
+        links.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="font-mono text-sm font-medium tracking-[0.01em] text-ink transition-colors duration-150 ease-out-quart hover:text-teal hover:underline hover:decoration-1 hover:underline-offset-[3px]"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="relative hidden h-[42px] w-[159px] shrink-0 md:block">
+      <a
+        href="mailto:todd@vektor10.com"
+        class="absolute -top-1 left-0.5 flex items-center whitespace-nowrap rounded-button border-2 border-ink bg-white px-[18px] py-[11px] font-mono text-[13px] font-semibold leading-4 tracking-[0.01em] text-ink transition-[transform,box-shadow] duration-[120ms] ease-out-quart [box-shadow:inset_-1px_1px_1px_#14141333,-2px_4px_0_0_#141413] hover:translate-x-[-1px] hover:translate-y-[2px] hover:[box-shadow:inset_-1px_1px_1px_#14141333,-1px_2px_0_0_#141413] active:translate-x-[-2px] active:translate-y-[4px] active:[box-shadow:inset_-1px_1px_1px_#14141333,0_0_0_0_#141413]"
+      >
+        Current Clients
+      </a>
+    </div>
+
+    <details class="relative md:hidden">
+      <summary class="flex cursor-pointer list-none items-center font-mono text-sm font-medium text-ink [&::-webkit-details-marker]:hidden">
+        Menu
+      </summary>
+      <ul class="absolute right-0 top-9 flex w-44 flex-col gap-3 rounded-card border-2 border-ink bg-bone p-4 [box-shadow:-2px_4px_0_0_#141413]">
+        {
+          links.map(({ label, href }) => (
+            <li>
+              <a href={href} class="font-mono text-sm font-medium text-ink">
+                {label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a href="mailto:todd@vektor10.com" class="font-mono text-sm font-semibold text-ink underline underline-offset-[3px]">
+            Current Clients
+          </a>
+        </li>
+      </ul>
+    </details>
+  </nav>
+</header>

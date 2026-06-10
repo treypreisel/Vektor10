@@ -1,0 +1,147 @@
+---
+import EmailForm from '../EmailForm.astro';
+
+// Canvas-true hero: photo ground, glass card (white 65% + blur 8 + grain),
+// typewriter cycling word (spec #1, Trey's verdict: backspace + retype, block caret),
+// card holds screen position on scroll and fades before the seam (spec #4).
+---
+
+<section id="hero" class="relative -mt-[96px] h-[900px] w-full overflow-clip" data-hero>
+  <div
+    class="absolute inset-0 bg-cover bg-center"
+    style="background-image: url('/hero-bg.jpg');"
+    role="img"
+    aria-label="Retro-analog consumer products in a dreamlike studio scene"
+  >
+  </div>
+
+  <div class="relative flex h-full items-center justify-center px-5 pb-[30px] sm:px-10">
+    <div
+      data-hero-card
+      class="relative flex w-fit max-w-[1080px] flex-col items-center justify-center gap-5 rounded-glass border-2 border-ink bg-white/65 px-6 py-8 backdrop-blur-[8px] backdrop-saturate-[1.2] sm:px-[65px] sm:py-[50px] [box-shadow:inset_-2px_4px_3px_#FFFFFF,-2px_2px_0_0_#141413]"
+    >
+      <div
+        class="pointer-events-none absolute inset-0 rounded-[13px] opacity-35 mix-blend-soft-light [background-image:url('/noise.png')] [background-size:200px_200px] [background-repeat:repeat]"
+        aria-hidden="true"
+      >
+      </div>
+
+      <div class="relative flex items-center gap-2 rounded-full bg-white pr-3">
+        <img src="/v5.png" alt="" class="h-[25px] w-auto brightness-0" />
+        <span class="font-mono text-body font-medium leading-[18px] text-ink">A VantaFive Agency</span>
+      </div>
+
+      <h1 class="relative flex flex-col items-center gap-0.5 text-center font-display text-[26px] leading-[112%] tracking-[-0.01em] text-ink sm:text-display">
+        <span class="flex flex-wrap items-center justify-center whitespace-pre">
+          When shoppers ask ChatGPT which{' '}
+          <span class="ml-2 inline-flex items-stretch gap-0.5 bg-white px-2">
+            <span data-cycling-word class="inline-block min-w-[4ch] whitespace-pre text-left text-teal">sofa</span>
+            <span data-caret class="w-0.5 self-stretch bg-ink"></span>
+          </span>
+        </span>
+        <span>to buy, is your product the one it picks?</span>
+      </h1>
+
+      <p class="relative max-w-[682px] text-center font-mono text-body font-medium leading-[165%] text-ink/65">
+        ChatGPT™ is becoming a new product shelf. Vektor10 makes sure your products are visible, accurate, and
+        recommended.
+      </p>
+
+      <EmailForm class="relative max-w-[546px]" />
+
+      <p class="relative text-center font-display text-body leading-[18px] tracking-[0.02em] text-ink">
+        The First Full-Suite ChatGPT™ Commerce Agency
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-caret] {
+    animation: caret-blink 1s steps(1) infinite;
+  }
+  [data-caret].typing {
+    animation: none;
+    opacity: 1;
+  }
+  @keyframes caret-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-caret] {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Typewriter cycling word: hold → backspace → type next (Trey's spec #1 verdict).
+  const WORDS = ['sofa', 'shoe', 'luggage', 'gaming'];
+  const HOLD = 2200;
+  const BACKSPACE_MS = 55;
+  const TYPE_MS = 95;
+
+  const word = document.querySelector<HTMLElement>('[data-cycling-word]');
+  const caret = document.querySelector<HTMLElement>('[data-caret]');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (word && caret && !reduced) {
+    // Fix the chip width to the longest word so nothing reflows.
+    const longest = WORDS.reduce((a, b) => (b.length > a.length ? b : a));
+    word.style.minWidth = `${longest.length}ch`;
+
+    let i = 0;
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+    (async () => {
+      for (;;) {
+        await sleep(HOLD);
+        caret.classList.add('typing');
+        const current = WORDS[i];
+        for (let n = current.length; n >= 0; n--) {
+          word.textContent = current.slice(0, n);
+          await sleep(BACKSPACE_MS);
+        }
+        await sleep(220);
+        i = (i + 1) % WORDS.length;
+        const next = WORDS[i];
+        for (let n = 1; n <= next.length; n++) {
+          word.textContent = next.slice(0, n);
+          await sleep(TYPE_MS);
+        }
+        caret.classList.remove('typing');
+      }
+    })();
+  }
+
+  // Hero card: hold screen position while the hero scrolls, fade before the seam (spec #4).
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const card = document.querySelector<HTMLElement>('[data-hero-card]');
+
+  if (hero && card && !reduced) {
+    // Section-relative geometry: while the card counteracts the scroll its
+    // screen position is constant, so only the hero's bottom edge moves.
+    const cardOffsetBottom = card.offsetTop + card.offsetHeight;
+    const heroHeight = hero.offsetHeight;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const y = Math.max(0, -hero.getBoundingClientRect().top);
+      card.style.transform = `translateY(${y}px)`;
+      const gapToSeam = heroHeight - y - cardOffsetBottom;
+      card.style.opacity = String(Math.min(1, Math.max(0, (gapToSeam - 40) / 180)));
+    };
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true }
+    );
+  }
+</script>

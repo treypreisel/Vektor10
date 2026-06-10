@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Let's talk — Vektor10">
+  <Nav />
+
+  <main class="flex flex-col items-center bg-bone px-6 pb-36 pt-16 sm:pt-24">
+    <div class="flex w-full max-w-[546px] flex-col gap-10">
+      <h1 class="font-display text-[36px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">Let's talk.</h1>
+
+      <form name="web-inquiry" method="post" action="/api/inquiry" class="flex flex-col gap-3.5">
+        <input type="text" name="name" required placeholder="Name" aria-label="Name" class="input-hard h-11" />
+        <input type="email" name="email" required placeholder="Email" aria-label="Email" class="input-hard h-11" data-prefill-email />
+        <input type="text" name="company" placeholder="Company" aria-label="Company" class="input-hard h-11" />
+        <textarea
+          name="message"
+          placeholder="Optional Message"
+          aria-label="Optional message"
+          class="input-hard h-[150px] resize-none pt-[14px] leading-[18px]"></textarea>
+
+        <div class="relative h-12 w-full">
+          <button type="submit" class="btn-hard absolute -top-1 left-0.5 h-11 w-[calc(100%-2px)]">Get Your Free Audit!</button>
+        </div>
+
+        <p class="text-center font-mono text-body font-medium leading-[22px] text-ink/65">
+          Goes straight to Todd. Audit in writing within 48 hours.
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <Footer />
+</Base>
+
+<script>
+  // The CTA model: home/offer email forms hand off here with ?email= — prefill it.
+  const email = new URLSearchParams(location.search).get('email');
+  const field = document.querySelector<HTMLInputElement>('[data-prefill-email]');
+  if (email && field) {
+    field.value = email;
+    document.querySelector<HTMLInputElement>('input[name="name"]')?.focus();
+  }
+</script>

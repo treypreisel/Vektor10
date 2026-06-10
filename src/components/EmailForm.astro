@@ -1,0 +1,24 @@
+---
+// The site's one conversion pattern: email capture that hands off to /contact
+// with the address passed through (?email=...) and prefilled there.
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<form action="/contact" method="get" class:list={['flex w-full flex-col gap-2.5 sm:flex-row sm:items-center', className]}>
+  <input
+    type="email"
+    name="email"
+    required
+    placeholder="Enter Your Email"
+    aria-label="Email address"
+    class="input-hard h-11 flex-1"
+  />
+  <div class="relative h-11 w-full shrink-0 sm:w-[168px]">
+    <button type="submit" class="btn-hard absolute -top-1 left-0.5 h-11 w-[calc(100%-2px)] whitespace-nowrap">
+      Get Your Free Audit!
+    </button>
+  </div>
+</form>

@@ -1,32 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/sections/Hero.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Base title="Vektor10 — Staging">
-  <main class="flex min-h-screen flex-col items-center justify-center gap-10 px-6">
-    <div class="flex flex-col items-center gap-5 text-center">
-      <p class="eyebrow text-teal">&lt; STAGING — BUILD IN PROGRESS &gt;</p>
-      <h1 class="font-display text-headline leading-[1.08] tracking-[-0.02em]">
-        The shelf is being stocked.
-      </h1>
-      <p class="max-w-md text-body leading-[26px] text-ink/65">
-        The Vektor10 site is moving from design to code. Sections land here as
-        they're built — pardon the sawdust.
-      </p>
-    </div>
+<Base title="Vektor10 — The First ChatGPT™ Commerce Agency">
+  <Nav />
+  <Hero />
 
-    <div class="relative h-12">
-      <a href="https://vektor10.com" class="btn-hard absolute -top-1 left-0.5 whitespace-nowrap">
-        Get Your Free Audit!
-      </a>
-    </div>
+  <section class="flex flex-col items-center gap-4 bg-bone px-6 py-32 text-center">
+    <p class="eyebrow text-teal">&lt; SECTIONS LANDING DAILY &gt;</p>
+    <p class="max-w-md font-mono text-body leading-[26px] text-ink/65">
+      Stakes, What Changes, How It Works, The Plan In Action, the offer, and the FAQ are being ported from the design
+      canvas now.
+    </p>
+  </section>
 
-    <ul class="flex gap-3" aria-label="Design tokens">
-      {
-        ['bg-ink', 'bg-ink-panel', 'bg-bone-deep', 'bg-bone-muted', 'bg-teal'].map((swatch) => (
-          <li class={`size-8 rounded-button border-2 border-ink ${swatch}`} />
-        ))
-      }
-    </ul>
-  </main>
+  <Footer />
 </Base>
