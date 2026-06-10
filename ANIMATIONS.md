@@ -1,7 +1,15 @@
-# Vektor10 — Animation Spec (draft for Trey's reaction, 2026-06-10)
+# Vektor10 — Animation Spec (RESOLVED 2026-06-10 — Trey's verdicts from Notion "Landing Page Animation Spec")
 
 Each row: **what** moves · **when** (trigger) · **how** (motion) · **how fast**.
-React per row — ✅ keep / ✏️ change / ❌ cut. Nothing here is built yet.
+All rows below reflect Trey's verdicts. Changed rows:
+
+- **#1 Cycling word → TYPEWRITER.** Word gets backspaced letter-by-letter, then the next word is typed in. The rectangle beside it is a blinking block caret (solid while typing). Chip width still fixed to the longest word.
+- **#2 Button press → FULL COUNTERACT.** On click the button moves exactly the shadow vector (−2px x, +4px y) and the drop shadow is deleted — the 3D press. (Hover keeps the half-press.)
+- **#3 Pillars → arrows ALWAYS BOB** up and down (gentle infinite loop) and fade out on scroll.
+- **#4 Hero card → NOTHING on page load.** On scroll, the card holds its position on screen while the hero scrolls, then fades out before it reaches the section seam (never gets cropped).
+- **NEW: Nav bar is STICKY** — locks to the top of the screen and follows the scroll.
+
+Rows 5–12 kept as drafted.
 
 ## Motion principles (the register)
 
