@@ -1,8 +1,8 @@
 ---
 // The Plan In Action — scroll-pinned pillar sequence (animation spec #3).
-// Desktop + motion-safe: section pins, the five states (intro + 4 pillars)
-// swap in place as you scroll; the arrow bobs forever and fades per-stage.
-// Mobile / reduced motion: plain stacked flow with arrows between (canvas-true).
+// Motion-safe (ALL widths — Trey wants the pin on mobile too): section pins,
+// the five states (intro + 4 pillars) swap in place as you scroll; the arrow
+// bobs forever and fades per-stage. Reduced motion: plain stacked flow.
 
 const pillars = [
   {
@@ -34,12 +34,12 @@ const pillars = [
 
 <section id="plan-in-action" class="bg-bone" data-pia>
   <div
-    class="flex flex-col items-center gap-16 px-6 pb-20 pt-10 sm:px-[60px] motion-safe:lg:sticky motion-safe:lg:top-0 motion-safe:lg:h-svh motion-safe:lg:justify-center motion-safe:lg:gap-0 motion-safe:lg:pb-0 motion-safe:lg:pt-0"
+    class="flex flex-col items-center gap-16 px-6 pb-20 pt-10 sm:px-[60px] motion-safe:sticky motion-safe:top-0 motion-safe:h-svh motion-safe:justify-center motion-safe:gap-0 motion-safe:pb-0 motion-safe:pt-0"
     data-pia-viewport
   >
     {/* Stage 0 — intro */}
     <div
-      class="flex flex-col items-center gap-2.5 text-center motion-safe:lg:absolute motion-safe:lg:inset-x-0 motion-safe:lg:top-1/2 motion-safe:lg:-translate-y-1/2 motion-safe:lg:px-[60px]"
+      class="flex flex-col items-center gap-2.5 text-center motion-safe:absolute motion-safe:inset-x-0 motion-safe:top-1/2 motion-safe:-translate-y-1/2 motion-safe:px-6 motion-safe:lg:px-[60px]"
       data-pia-stage
     >
       <p class="eyebrow text-teal">&lt; THE PLAN IN ACTION &gt;</p>
@@ -47,7 +47,7 @@ const pillars = [
         Winning AI Search takes more than tracking mentions. We do the behind-the-scenes work that fixes the system
         underneath...
       </h2>
-      <svg width="20" height="96" viewBox="0 0 20 96" xmlns="http://www.w3.org/2000/svg" class="pia-bob mt-8 shrink-0 motion-safe:lg:hidden" aria-hidden="true">
+      <svg width="20" height="96" viewBox="0 0 20 96" xmlns="http://www.w3.org/2000/svg" class="pia-bob mt-8 shrink-0 motion-safe:hidden" aria-hidden="true">
         <path d="M10 2 V86 M3 78 L10 86 L17 78" fill="none" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
     </div>
@@ -56,7 +56,7 @@ const pillars = [
     {
       pillars.map(({ emoji, eyebrow, title, body }) => (
         <div
-          class="flex w-full flex-col items-center motion-safe:lg:absolute motion-safe:lg:inset-x-0 motion-safe:lg:top-1/2 motion-safe:lg:-translate-y-1/2 motion-safe:lg:px-[60px]"
+          class="flex w-full flex-col items-center motion-safe:absolute motion-safe:inset-x-0 motion-safe:top-1/2 motion-safe:-translate-y-1/2 motion-safe:px-6 motion-safe:lg:px-[60px]"
           data-pia-stage
         >
           <article class="flex w-full max-w-[800px] flex-col items-center gap-6 rounded-feature border-2 border-ink bg-bone-deep px-6 py-[34px] sm:flex-row sm:gap-8 sm:px-[44px] [box-shadow:inset_-2px_4px_3px_#F0EEE5,-2px_4px_0_0_#141413]">
@@ -69,7 +69,7 @@ const pillars = [
               <p class="font-mono text-body font-medium leading-[155%] text-ink">{body}</p>
             </div>
           </article>
-          <svg width="20" height="96" viewBox="0 0 20 96" xmlns="http://www.w3.org/2000/svg" class="pia-bob mt-10 shrink-0 motion-safe:lg:hidden" aria-hidden="true">
+          <svg width="20" height="96" viewBox="0 0 20 96" xmlns="http://www.w3.org/2000/svg" class="pia-bob mt-10 shrink-0 motion-safe:hidden" aria-hidden="true">
             <path d="M10 2 V86 M3 78 L10 86 L17 78" fill="none" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </div>
@@ -77,7 +77,7 @@ const pillars = [
     }
 
     {/* Shared bobbing arrow — pinned mode only */}
-    <div class="hidden motion-safe:lg:block motion-safe:lg:absolute motion-safe:lg:bottom-10 motion-safe:lg:left-1/2 motion-safe:lg:-translate-x-1/2" data-pia-arrow>
+    <div class="hidden motion-safe:block motion-safe:absolute motion-safe:bottom-10 motion-safe:left-1/2 motion-safe:-translate-x-1/2" data-pia-arrow>
       <svg width="20" height="96" viewBox="0 0 20 96" xmlns="http://www.w3.org/2000/svg" class="pia-bob" aria-hidden="true">
         <path d="M10 2 V86 M3 78 L10 86 L17 78" fill="none" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
@@ -130,9 +130,8 @@ const pillars = [
   const stages = [...document.querySelectorAll<HTMLElement>('[data-pia-stage]')];
   const arrow = document.querySelector<HTMLElement>('[data-pia-arrow]');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const desktop = window.matchMedia('(min-width: 1024px)').matches;
 
-  if (wrap && arrow && stages.length && desktop && !reduced) {
+  if (wrap && arrow && stages.length && !reduced) {
     wrap.classList.add('pinned');
     // 80vh of scroll per stage + the pinned viewport itself.
     wrap.style.height = `${stages.length * 80 + 100}vh`;
