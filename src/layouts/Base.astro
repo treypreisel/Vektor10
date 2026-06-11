@@ -12,6 +12,9 @@ interface Props {
   /** Document canvas background — iOS paints the status-bar strip and overscroll with this.
       Two-tone gradients let top overscroll match the hero and bottom match the footer. */
   rootBackground?: string;
+  /** Social share image (absolute path); pages with their own imagery pass it. */
+  ogImage?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
@@ -19,7 +22,13 @@ const {
   description = 'Vektor10 — The 1st Full-Suite ChatGPT Commerce Agency.',
   themeColor = '#F0EEE5',
   rootBackground = '#F0EEE5',
+  ogImage = '/og-default.jpg',
+  ogType = 'website',
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageAbs = new URL(ogImage, Astro.site);
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
 ---
 
 <!doctype html>
@@ -42,6 +51,47 @@ const {
     <meta name="theme-color" content={themeColor} />
     <meta name="robots" content="noindex, nofollow" />
     <!-- noindex stays until the production domain cutover -->
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Vektor10" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Vektor10, Inc.',
+        url: 'https://vektor10.com',
+        description: 'The 1st full-suite ChatGPT commerce agency. Vektor10 gets consumer brands found, recommended, and bought in ChatGPT.',
+        email: 'todd@vektor10.com',
+        founder: { '@type': 'Person', name: 'Todd Piechowski' },
+        parentOrganization: { '@type': 'Organization', name: 'VantaFive' },
+        sameAs: ['https://www.linkedin.com/in/toddpie/'],
+      })}
+    />
+
+    {
+      GA4_ID && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} is:inline />
+          <script
+            is:inline
+            set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','${GA4_ID}');`}
+          />
+        </>
+      )
+    }
   </head>
   <body class="min-h-screen bg-bone font-mono text-ink">
     <slot />

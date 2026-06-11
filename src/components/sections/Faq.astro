@@ -27,6 +27,21 @@ const items = [
 ];
 ---
 
+{/* The AEO asset, machine-readable: these literal Q&As are what ChatGPT cites. */}
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  })}
+/>
+
 <section id="faq" class="flex flex-col items-center bg-bone px-6 pb-[150px] pt-[40px] sm:px-[60px]">
   <div class="flex w-full max-w-[1000px] flex-col gap-10 sm:gap-14">
     <div class="flex flex-col gap-[5px]">

@@ -19,7 +19,27 @@ const fmtDate = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC' }).toUpperCase();
 ---
 
-<Base title={`${post.data.title} — Vektor10`} description={post.data.description}>
+<Base
+  title={`${post.data.title} — Vektor10`}
+  description={post.data.description}
+  ogImage={post.data.heroImage}
+  ogType="article"
+>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.data.title,
+      description: post.data.description,
+      datePublished: post.data.date.toISOString(),
+      image: post.data.heroImage ? new URL(post.data.heroImage, Astro.site).href : undefined,
+      author: { '@type': 'Person', name: post.data.author, jobTitle: post.data.role },
+      publisher: { '@type': 'Organization', name: 'Vektor10, Inc.', url: 'https://vektor10.com' },
+      mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+    })}
+  />
   <Nav />
 
   <main class="flex flex-col items-center bg-bone px-6 pb-[120px] pt-16 sm:px-[60px] sm:pt-[110px]">

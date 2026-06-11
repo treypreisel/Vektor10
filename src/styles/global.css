@@ -166,6 +166,10 @@
     line-height: 26px;
     color: var(--color-teal);
   }
+  .prose-v10 strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
   .prose-v10 a {
     color: var(--color-teal);
     text-decoration: underline;
