@@ -2,9 +2,9 @@
 
 Marketing site for **Vektor10, Inc.** — the 1st full-suite ChatGPT commerce agency. A VantaFive portfolio company.
 
-- **Staging:** https://vektor10-site.vercel.app (noindex until launch)
-- **Production (after cutover):** https://vektor10.com — launch June 15, 2026
-- **Status:** all pages live on staging (Tech page scaffolded but unlinked, awaiting Trace assets)
+- **Production:** https://vektor10.com — **LIVE since June 11, 2026** (www redirects to apex)
+- **Staging/preview:** https://vektor10-site.vercel.app (same deployment)
+- **Status:** launched and indexable; Tech page scaffolded but unlinked, awaiting Trace assets
 
 ## Stack
 
@@ -43,11 +43,10 @@ npx astro preview  # serve the build locally
 - Motion: exponential ease-out, 120–500ms, `prefers-reduced-motion` respected; scroll reveals have a 3s failsafe so crawlers never see hidden content.
 - Copy: commerce language (never "GEO" or "score"), ChatGPT™ with ™, FAQ answers are Todd's words verbatim.
 
-## Launch-day runbook (June 15)
+## Launch status (went live June 11, 2026)
 
+Done: noindex removed, robots.txt open, `vektor10.com` + `www` (308 → apex) attached to this project, live verification passed (pages, legal entity, sitemap, OG image, inquiry endpoint).
+
+Remaining:
 1. Add `PUBLIC_GA4_ID` to Vercel env (GA4 Measurement ID) and redeploy — analytics activates.
-2. In `src/layouts/Base.astro`: **remove the `noindex` meta line.**
-3. Replace `public/robots.txt` with allow-all (keep the Sitemap line).
-4. Vercel dashboard → vektor10-site → Domains → add `vektor10.com` (+ `www`), update DNS at the registrar as instructed.
-5. Deploy, then verify: `curl https://vektor10.com` serves the new site; legal pages say "Vektor10, Inc."; submit a test inquiry end to end.
-6. Post-launch: watch GA4's traffic acquisition for `chatgpt.com` referrals (knowing they undercount).
+2. Post-launch: watch GA4's traffic acquisition for `chatgpt.com` referrals (knowing they undercount).
