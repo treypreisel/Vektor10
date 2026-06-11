@@ -33,10 +33,16 @@ import EmailForm from '../EmailForm.astro';
         <span class="font-mono text-body font-medium leading-[18px] text-ink">A VantaFive Agency</span>
       </div>
 
+      {/* Below lg the headline snaps to a fixed 4-line layout so the cycling
+          word is never orphaned or stranded mid-sentence (Trey's mockup). */}
       <h1 class="relative text-center font-display text-[26px] leading-[112%] tracking-[-0.01em] text-ink sm:text-display">
-        <span>When shoppers ask ChatGPT which&nbsp;</span><span data-chip-slot class="inline-flex h-[1.12em] justify-start align-baseline"><span data-chip class="flex h-full items-stretch gap-0.5 bg-white px-2"><span data-cycling-word class="whitespace-pre leading-[1.12em] text-teal">sofa</span><span data-caret class="w-0.5 shrink-0 self-stretch bg-ink"></span></span></span>
+        <span>When shoppers ask</span>
+        <br class="lg:hidden" />
+        <span>ChatGPT which&nbsp;</span><span data-chip-slot class="inline-flex h-[1.12em] justify-start align-baseline"><span data-chip class="flex h-full items-stretch gap-0.5 bg-white px-2"><span data-cycling-word class="whitespace-pre leading-[1.12em] text-teal">sofa</span><span data-caret class="w-0.5 shrink-0 self-stretch bg-ink"></span></span></span>
         <br />
-        <span>to buy, is your product the one it picks?</span>
+        <span>to buy, is your product</span>
+        <br class="lg:hidden" />
+        <span>the one it picks?</span>
         <span data-word-measure class="invisible absolute -z-10 whitespace-pre" aria-hidden="true"></span>
       </h1>
 
@@ -48,7 +54,7 @@ import EmailForm from '../EmailForm.astro';
       <EmailForm class="relative max-w-[546px]" />
 
       <p class="relative text-center font-display text-body leading-[18px] tracking-[0.02em] text-ink">
-        The First Full-Suite ChatGPT™ Commerce Agency
+        The 1st Full-Suite ChatGPT Commerce Agency
       </p>
     </div>
   </div>
@@ -140,27 +146,28 @@ import EmailForm from '../EmailForm.astro';
   const card = document.querySelector<HTMLElement>('[data-hero-card]');
 
   if (hero && card && !reduced) {
-    // Section-relative geometry: while the card counteracts the scroll its
-    // screen position is constant, so only the hero's bottom edge moves.
-    const cardOffsetBottom = card.offsetTop + card.offsetHeight;
-    const heroHeight = hero.offsetHeight;
+    // Live rects every frame (no cached offsets): fonts/images/URL-bar
+    // resizes can't strand the opacity below 1 on the way back up.
     let ticking = false;
     const update = () => {
       ticking = false;
-      const y = Math.max(0, -hero.getBoundingClientRect().top);
+      const heroRect = hero.getBoundingClientRect();
+      const y = Math.max(0, -heroRect.top);
       card.style.transform = `translateY(${y}px)`;
-      const gapToSeam = heroHeight - y - cardOffsetBottom;
-      card.style.opacity = String(Math.min(1, Math.max(0, (gapToSeam - 40) / 180)));
+      // Fade normalized to THIS layout's resting distance from the seam —
+      // fixed thresholds left mobile permanently under-opaque.
+      const restGap = hero.offsetHeight - (card.offsetTop + card.offsetHeight);
+      const gapToSeam = heroRect.bottom - card.getBoundingClientRect().bottom;
+      const progress = (gapToSeam - 30) / Math.max(1, restGap - 30);
+      card.style.opacity = String(Math.min(1, Math.max(0, progress)));
     };
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(update);
-        }
-      },
-      { passive: true }
-    );
+    const queue = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue, { passive: true });
   }
 </script>

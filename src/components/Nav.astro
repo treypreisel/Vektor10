@@ -10,7 +10,7 @@ const links = [
 ];
 ---
 
-<header class="sticky top-0 z-50 flex w-full justify-center px-4 pt-4 sm:px-10 sm:pt-[26px]">
+<header class="sticky top-0 z-50 flex w-full justify-center px-4 pt-[max(16px,env(safe-area-inset-top))] sm:px-10 sm:pt-[max(26px,env(safe-area-inset-top))]">
   <nav
     class="relative flex w-full max-w-[1360px] items-center justify-between rounded-glass border-2 border-ink bg-white/60 py-3 pl-[22px] pr-3.5 backdrop-blur-[8px] backdrop-saturate-[1.2] [box-shadow:inset_-2px_4px_3px_#FFFFFF66,-2px_4px_0_0_#141413]"
     aria-label="Main"
@@ -43,7 +43,7 @@ const links = [
     <div class="relative hidden h-[42px] w-[159px] shrink-0 md:block">
       <a
         href="mailto:todd@vektor10.com"
-        class="absolute -top-1 left-0.5 flex items-center whitespace-nowrap rounded-button border-2 border-ink bg-white px-[18px] py-[11px] font-mono text-[13px] font-semibold leading-4 tracking-[0.01em] text-ink transition-[transform,box-shadow] duration-[120ms] ease-out-quart [box-shadow:inset_-1px_1px_1px_#14141333,-2px_4px_0_0_#141413] hover:translate-x-[-1px] hover:translate-y-[2px] hover:[box-shadow:inset_-1px_1px_1px_#14141333,-1px_2px_0_0_#141413] active:translate-x-[-2px] active:translate-y-[4px] active:[box-shadow:inset_-1px_1px_1px_#14141333,0_0_0_0_#141413]"
+        class="absolute -top-1 left-0.5 flex items-center whitespace-nowrap rounded-button border-2 border-ink bg-bone-deep px-[18px] py-[11px] font-mono text-[13px] font-semibold leading-4 tracking-[0.01em] text-ink transition-[transform,box-shadow] duration-[120ms] ease-out-quart [box-shadow:inset_-1px_1px_1px_#14141333,-2px_4px_0_0_#141413] hover:translate-x-[-1px] hover:translate-y-[2px] hover:[box-shadow:inset_-1px_1px_1px_#14141333,-1px_2px_0_0_#141413] active:translate-x-[-2px] active:translate-y-[4px] active:[box-shadow:inset_-1px_1px_1px_#14141333,0_0_0_0_#141413]"
       >
         Current Clients
       </a>
