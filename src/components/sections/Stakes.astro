@@ -1,0 +1,106 @@
+---
+// Stakes — canvas-true (#E6DBCB band, flat bone cards, teal blob icons).
+// Reveal: cards rise 12px + fade, 90ms stagger, once (animation spec row 7).
+
+const cards = [
+  {
+    title: 'Shoppers Go Elsewhere',
+    body: 'ChatGPT™ recommends competitors while you have no visibility into the lost sale.',
+  },
+  {
+    title: 'Your Product Truth Drifts',
+    body: 'Wrong prices, missing details, or reseller links quietly erode trust and margin.',
+  },
+  {
+    title: 'The Edge Compounds',
+    body: 'Every month a competitor gains more ground on a shelf that is only getting more crowded.',
+  },
+];
+---
+
+<section id="stakes" class="flex flex-col items-center gap-[5px] bg-bone-deep px-6 pb-32 pt-[104px] sm:px-[60px]">
+  <p class="eyebrow text-ink/65">&lt; WHAT&rsquo;S AT STAKE &gt;</p>
+  <h2 class="text-center font-display text-[24px] leading-[112%] tracking-[-0.02em] text-ink sm:text-headline">
+    <span class="sm:block">The shelf you can&rsquo;t see is </span><span class="sm:block">already shaping demand</span>
+  </h2>
+
+  <div class="flex w-full max-w-[1180px] flex-col gap-8 py-[35px] lg:flex-row" data-stagger>
+    {
+      cards.map(({ title, body }, i) => (
+        <article
+          class="flex min-h-[444px] min-w-0 flex-1 flex-col items-center justify-between gap-6 rounded-card bg-bone px-10 py-[30px]"
+          data-reveal
+        >
+          <h3 class="self-stretch text-center font-display text-[19px] leading-[120%] tracking-[-0.01em] text-ink">{title}</h3>
+          <div class="flex w-full flex-1 items-center justify-center">
+            {i === 0 && (
+              <svg width="156" height="150" viewBox="-71.1 -68.1 616.2 590.2" xmlns="http://www.w3.org/2000/svg" class="shrink-0" aria-hidden="true">
+                <path
+                  d="M291.454 9.934C293.177-5.001 298.071-32.406 307.392-43.8 311.148-48.45 315.897-52.191 321.287-54.743 334.932-61.332 371.169-66.22 386.47-67.608 398.431-68.757 410.449-69.215 422.459-68.979 443.757-68.435 464.971-66.023 485.855-61.774 492.793-60.398 500.956-58.8 507.527-56.243 512.02-54.518 516.198-52.047 519.88-48.932 526.873-42.983 531.134-34.842 533.503-26.05 538.561-7.277 541.619 12.339 543.205 31.726 544.085 42.238 544.459 52.786 544.333 63.333 543.946 85.929 539.541 130.134 531.458 150.555 529.725 155.034 527.264 159.192 524.175 162.858 520.107 167.538 515.058 171.255 509.392 173.741 493.164 180.92 452.029 185.628 433.937 186.812 406.464 188.609 373.709 185.631 346.594 180.065 339.357 178.58 330.417 176.9 323.601 174.077 319.343 172.338 315.408 169.881 311.968 166.812 307.925 163.256 304.631 158.922 302.279 154.066 296.403 141.973 290.781 108.633 289.918 95.013 280.967 93.938 272.745 92.409 263.508 91.526 236.728 88.954 209.723 90.114 183.259 94.972 182.622 106.319 179.942 121.145 177.404 132.241 183.762 145.648 188.754 158.038 195.712 171.87 214.154 208.532 234.842 238.777 259.779 271.057 266.728 270.225 273.288 268.946 280.442 268.19 308.752 263.878 344.481 265.405 372.734 269.725 379.453 270.772 386.142 271.989 392.798 273.376 426.65 280.237 434.038 289.104 441.359 322.653 450.182 364.79 451.1 408.217 444.064 450.693 443.059 456.887 441.847 463.045 440.421 469.152 432.68 503.189 421.071 508.563 388.953 514.928 347.839 523.307 305.546 524.043 264.169 517.102 245.021 513.882 220.81 510.988 209.842 494.069 203.599 484.438 201.897 474.86 199.583 463.905 189.709 417.146 190.564 375.433 198.447 328.764 163.95 286.666 129.854 233.478 108.022 183.234 101.14 184.839 82.109 186.386 74.616 186.805 45.526 188.227 16.372 185.972-12.162 180.092-19.355 178.665-28.118 176.999-34.843 174.252-39.611 172.327-44.005 169.572-47.824 166.114-51.232 163.006-55.794 156.924-57.375 152.67-65.582 130.594-69.54 98.803-70.732 75.5-72.127 45.188-69.55 14.823-63.071-14.813-60.5-26.199-58.318-36.442-50.253-45.31-46.426-49.596-41.727-53.003-36.475-55.302-29.607-58.368-21.071-60.061-13.679-61.551 5.866-65.552 25.699-67.976 45.63-68.798 71.345-70.101 100.891-66.87 126.191-61.889 133.179-60.512 141.785-58.823 148.38-56.279 152.335-54.772 156.045-52.685 159.393-50.087 164.052-46.495 167.845-41.893 170.493-36.623 175.713-26.475 180.241-2.024 181.669 9.746 185.72 8.857 196.875 7.714 200.973 7.337 228.966 4.757 263.706 4.839 291.454 9.934Z"
+                  fill="#2E926C"
+                />
+              </svg>
+            )}
+            {i === 1 && (
+              <svg width="160" height="160" viewBox="-91.035 -91.035 662.069 662.069" xmlns="http://www.w3.org/2000/svg" class="shrink-0" aria-hidden="true">
+                <path
+                  d="M120.01 344.242C120.01 349.264 120.279 353.928 120.428 358.772-24.277 354.436-89.274 285.014-89.274 134.959-89.274-20.121-20.121-89.273 134.959-89.273 285.014-89.273 354.437-24.246 358.772 120.429 353.928 120.279 349.264 120.01 344.241 120.01 189.162 120.01 120.01 189.163 120.01 344.242ZM358.772 120.429C358.922 125.271 359.19 129.936 359.19 134.959 359.19 290.037 290.037 359.191 134.959 359.191 129.936 359.191 125.271 358.922 120.428 358.772 124.763 503.476 194.185 568.474 344.241 568.474 499.321 568.474 568.474 499.321 568.474 344.242 568.474 194.185 503.446 124.764 358.772 120.429Z"
+                  fill="#2E926C"
+                />
+              </svg>
+            )}
+            {i === 2 && (
+              <svg width="156" height="142" viewBox="-61.935 -56.645 603.871 552.29" xmlns="http://www.w3.org/2000/svg" class="shrink-0" aria-hidden="true">
+                <path d="M358.988 126.594C434.407 126.594 450.253 76.865 450.253 35.131 450.253-6.602 434.407-56.332 358.988-56.332 283.568-56.332 267.721-6.602 267.721 35.131 267.721 76.865 283.568 126.594 358.988 126.594Z" fill="#2E926C" />
+                <path d="M540.559 440.116C506.18 283.506 396.82 191.878 392.188 188.045 382.044 179.665 367.404 179.692 357.26 188.045 352.627 191.878 243.432 283.506 209.053 440.116 205.983 454.027 214.125 467.966 227.75 472.156 275.837 486.97 325.322 494.392 374.806 494.392 424.291 494.392 473.748 486.97 521.862 472.156 535.488 467.966 543.63 454.027 540.559 440.116Z" fill="#2E926C" />
+                <path d="M155.511 428.368C180.623 313.902 240.47 231.422 281.512 185.853 238.908 131.387 182.515 79.713 180.815 78.343 170.672 70.265 156.278 70.429 146.272 78.645 139.801 84.012-13.066 212.252-61.289 431.874-64.36 445.785-56.218 459.724-42.592 463.913 13.938 481.329 72.223 491.571 130.673 494.364 131.112 494.364 131.55 494.364 132.016 494.364 143.586 494.364 155.676 488.285 160.5 478.426 153.811 463.064 151.7 445.621 155.538 428.314L155.511 428.368Z" fill="#2E926C" />
+              </svg>
+            )}
+          </div>
+          <p class="self-stretch text-left font-mono text-body font-medium leading-[165%] text-ink">{body}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal].pre {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    [data-reveal] {
+      transition:
+        opacity 400ms var(--ease-out-quart),
+        transform 400ms var(--ease-out-quart);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+  }
+</style>
+
+<script>
+  // Rise-and-fade reveal, staggered 90ms, fires once. Content is visible by
+  // default; the hidden state is applied by JS so no-JS never ships blank.
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-stagger]').forEach((group) => {
+    const items = [...group.querySelectorAll<HTMLElement>('[data-reveal]')];
+    if (reduced || !('IntersectionObserver' in window)) return;
+    items.forEach((el, i) => {
+      el.classList.add('pre');
+      el.style.setProperty('--reveal-delay', `${i * 90}ms`);
+    });
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            items.forEach((el) => el.classList.remove('pre'));
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(group);
+  });
+</script>
