@@ -36,10 +36,11 @@ import EmailForm from '../EmailForm.astro';
       <h1 class="relative flex flex-col items-center gap-0.5 text-center font-display text-[26px] leading-[112%] tracking-[-0.01em] text-ink sm:text-display">
         <span class="flex flex-wrap items-center justify-center whitespace-pre">
           When shoppers ask ChatGPT which{' '}
-          <span class="inline-flex items-stretch gap-0.5 bg-white px-2">
-            <span data-cycling-word class="inline-block min-w-[4ch] whitespace-pre text-left text-teal">sofa</span>
-            <span data-caret class="w-0.5 self-stretch bg-ink"></span>
+          <span data-chip class="inline-flex items-stretch gap-0.5 overflow-hidden bg-white px-2 transition-[width] duration-200 ease-out-quart">
+            <span data-cycling-word class="inline-block whitespace-pre text-left text-teal">sofa</span>
+            <span data-caret class="w-0.5 shrink-0 self-stretch bg-ink"></span>
           </span>
+          <span data-word-measure class="invisible absolute -z-10 whitespace-pre" aria-hidden="true"></span>
         </span>
         <span>to buy, is your product the one it picks?</span>
       </h1>
@@ -87,12 +88,19 @@ import EmailForm from '../EmailForm.astro';
 
   const word = document.querySelector<HTMLElement>('[data-cycling-word]');
   const caret = document.querySelector<HTMLElement>('[data-caret]');
+  const chip = document.querySelector<HTMLElement>('[data-chip]');
+  const measurer = document.querySelector<HTMLElement>('[data-word-measure]');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (word && caret && !reduced) {
-    // Fix the chip width to the longest word so nothing reflows.
-    const longest = WORDS.reduce((a, b) => (b.length > a.length ? b : a));
-    word.style.minWidth = `${longest.length}ch`;
+  if (word && caret && chip && measurer && !reduced) {
+    // Chip hugs each completed word (canvas-true); width animates once per
+    // cycle to the larger of outgoing/incoming so keystrokes never jitter it.
+    const CHROME = 16 /* px-2 */ + 2 /* caret */ + 2 /* gap */;
+    const widthFor = (text: string) => {
+      measurer.textContent = text;
+      return measurer.offsetWidth + CHROME;
+    };
+    chip.style.width = `${widthFor(WORDS[0])}px`;
 
     let i = 0;
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -100,19 +108,23 @@ import EmailForm from '../EmailForm.astro';
     (async () => {
       for (;;) {
         await sleep(HOLD);
-        caret.classList.add('typing');
         const current = WORDS[i];
+        i = (i + 1) % WORDS.length;
+        const next = WORDS[i];
+
+        caret.classList.add('typing');
+        chip.style.width = `${Math.max(widthFor(current), widthFor(next))}px`;
+        await sleep(200);
         for (let n = current.length; n >= 0; n--) {
           word.textContent = current.slice(0, n);
           await sleep(BACKSPACE_MS);
         }
         await sleep(220);
-        i = (i + 1) % WORDS.length;
-        const next = WORDS[i];
         for (let n = 1; n <= next.length; n++) {
           word.textContent = next.slice(0, n);
           await sleep(TYPE_MS);
         }
+        chip.style.width = `${widthFor(next)}px`;
         caret.classList.remove('typing');
       }
     })();
