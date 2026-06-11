@@ -27,6 +27,16 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script is:inline>
+      // iOS auto-zooms inputs with sub-16px text (our 10px functional-button
+      // role). maximum-scale=1 suppresses ONLY the auto-zoom on iOS — pinch
+      // zoom still works there — but would block pinch on Android, so apply
+      // it to iOS devices only. (Standard documented workaround.)
+      if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+        const vp = document.querySelector('meta[name="viewport"]');
+        if (vp) vp.setAttribute('content', vp.getAttribute('content') + ', maximum-scale=1');
+      }
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content={themeColor} />
