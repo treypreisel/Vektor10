@@ -157,8 +157,17 @@ import Footer from '../components/Footer.astro';
           </div>
         </form>
         <p class="font-mono text-[13px] font-medium text-ink-faint">No spam. Unsubscribe anytime.</p>
-        <div id="bookSuccess" hidden class="rounded-button border-2 border-ink bg-teal px-5 py-4 font-mono text-body font-medium leading-6 text-bone [box-shadow:-2px_4px_0_0_#141413]">
-          Check your inbox — the book and toolkit are on their way.
+        <div id="bookSuccess" hidden class="flex flex-col gap-4 rounded-button border-2 border-ink bg-teal px-5 py-5 [box-shadow:-2px_4px_0_0_#141413]">
+          <p class="font-mono text-body font-semibold leading-6 text-bone">You're in. Here's your copy.</p>
+          <div class="relative h-12 w-full sm:w-[220px]">
+            <a
+              href="/Instant-Checkout.pdf"
+              download
+              class="absolute -top-1 left-0.5 flex h-11 w-[calc(100%-2px)] items-center justify-center whitespace-nowrap rounded-button border-2 border-ink bg-white px-[22px] font-mono text-control font-semibold leading-3 text-ink transition-[transform,box-shadow] duration-[120ms] ease-out-quart [box-shadow:inset_-1px_2px_1px_#14141333,-2px_4px_0_0_#141413] hover:translate-x-[-1px] hover:translate-y-[2px] hover:[box-shadow:inset_-1px_2px_1px_#14141333,-1px_2px_0_0_#141413] active:translate-x-[-2px] active:translate-y-[4px] active:[box-shadow:inset_-1px_2px_1px_#14141333,0_0_0_0_#141413]"
+            >
+              Download the PDF &darr;
+            </a>
+          </div>
         </div>
       </div>
     </section>
