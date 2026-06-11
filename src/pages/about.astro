@@ -2,13 +2,95 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+
+// About — canvas-true: manifesto column on bone, "Our Leadership" inset ink
+// panel (Trey's emphasis-band pattern) with B&W headshots.
+
+const founders = [
+  {
+    photo: '/todd.jpg',
+    alt: 'Black and white portrait of Todd Piechowski',
+    role: '< FOUNDER & CEO >',
+    name: 'Todd Piechowski',
+    bio: 'Todd spent 6 years at Envision Horizons, one of the top Amazon marketing agencies in the US, where he led growth, AI strategy, and innovation as VP of Growth. He started tracking how AI agents surface and recommend products before the category had a name — building tracking tools, publishing research, and writing Instant Checkout, a book on the shift from search-driven to agent-driven commerce. He saw brands losing sales inside ChatGPT™ that they couldn’t measure, couldn’t explain, and couldn’t fix. Vektor10 is the fix.',
+  },
+  {
+    photo: '/john.jpg',
+    alt: 'Black and white portrait of John Ghiorso',
+    role: '< EXECUTIVE CHAIRMAN >',
+    name: 'John Ghiorso',
+    bio: 'John founded Orca Pacific in 2008 — one of the first Amazon agencies — and grew it to eight figures and roughly 100 people before selling to Media.Monks in 2020. He now runs VantaFive, a venture studio that launches niche, platform-specific agencies in the gaps between consumer adoption and business readiness. His thesis is simple: when a new platform creates demand faster than brands can respond, the first agency to go deep on that platform wins. He’s done it four times. Vektor10 is the fifth.',
+  },
+];
 ---
 
-<Base title="About Vektor10 — Vektor10">
+<Base title="About Vektor10 — The 1st ChatGPT Commerce Agency">
   <Nav />
-  <main class="flex min-h-[50vh] flex-col items-center justify-center gap-4 bg-bone px-6 py-32 text-center">
-    <h1 class="font-display text-headline leading-[108%] tracking-[-0.02em] text-ink">About Vektor10.</h1>
-    <p class="eyebrow text-teal">&lt; PORTING FROM THE DESIGN CANVAS &gt;</p>
+
+  <main class="bg-bone">
+    <div class="mx-auto flex w-full max-w-[760px] flex-col gap-8 px-6 pb-[100px] pt-24 sm:pt-[150px]">
+      <div class="flex flex-col gap-[5px]">
+        <p class="eyebrow text-teal">&lt; ABOUT VEKTOR10 &gt;</p>
+        <h1 class="font-display text-[26px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">
+          Commerce moved. Most brands haven't noticed yet.
+        </h1>
+      </div>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        Fifty million product queries hit ChatGPT™ every day. AI referral traffic is up nearly 700% year over year. And
+        when a shopper asks an AI agent "what's the best sunscreen under $30," the answer isn't determined by ad spend
+        or brand equity — it's determined by feed accuracy, structured data, and whether the AI has enough information
+        to confidently recommend you.
+      </p>
+      <p class="font-display text-[24px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">
+        That's the gap Vektor10 was built to close.
+      </p>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        We're a ChatGPT™ commerce agency — the first of its kind. While other firms sell dashboards and visibility
+        reports, we do the actual catalog-level work that gets products found, recommended, and bought on AI shopping
+        surfaces. Feeds, prices, product content, paid placement, and the monitoring infrastructure to prove it's
+        working.
+      </p>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        Vektor10 is backed by VantaFive, the venture studio behind platform-specialist agencies for LinkedIn
+        (Influent), TikTok Shop (Sohva), and Reddit (Recho). Same playbook — one platform, total depth — applied to the
+        commerce surface that's growing fastest.
+      </p>
+    </div>
+
+    <div class="px-4 py-5 sm:px-[68px]">
+      <section
+        class="mx-auto flex w-full flex-col items-center rounded-card border-2 border-ink bg-ink-panel px-6 pb-[110px] pt-[90px] sm:px-[60px] [box-shadow:inset_-2px_4px_3px_#FFFFFF33,-2px_4px_0_0_#141413]"
+      >
+        <div class="flex w-full max-w-[1180px] flex-col gap-[35px]" data-stagger>
+          <h2 class="font-display text-[26px] leading-none tracking-[-0.02em] text-bone sm:text-headline" data-reveal>
+            Our Leadership
+          </h2>
+          {
+            founders.map(({ photo, alt, role, name, bio }) => (
+              <div class="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:gap-[70px]" data-reveal>
+                <img
+                  src={photo}
+                  alt={alt}
+                  width="380"
+                  height="380"
+                  loading="lazy"
+                  decoding="async"
+                  class="size-[260px] shrink-0 rounded-full object-cover sm:size-[380px]"
+                />
+                <div class="flex min-w-0 flex-col gap-4">
+                  <div class="flex flex-col gap-[5px]">
+                    <p class="eyebrow text-teal">{role}</p>
+                    <h3 class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-bone sm:text-title">{name}</h3>
+                  </div>
+                  <p class="font-mono text-body font-medium leading-[26px] text-bone-deep/65">{bio}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+    </div>
   </main>
+
   <Footer />
 </Base>

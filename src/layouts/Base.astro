@@ -55,11 +55,12 @@ const {
             el.classList.add('pre');
             el.style.setProperty('--reveal-delay', `${i * 90}ms`);
           });
+          const reveal = () => items.forEach((el) => el.classList.remove('pre'));
           const io = new IntersectionObserver(
             (entries) => {
               for (const e of entries) {
                 if (e.isIntersecting) {
-                  items.forEach((el) => el.classList.remove('pre'));
+                  reveal();
                   io.disconnect();
                 }
               }
@@ -67,6 +68,9 @@ const {
             { threshold: 0.15 }
           );
           io.observe(group);
+          // Failsafe: headless renderers, crawlers, and stitched screenshots
+          // never scroll — content must not stay hidden behind the reveal.
+          setTimeout(reveal, 3000);
         });
       }
     </script>

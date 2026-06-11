@@ -2,13 +2,80 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+
+// Verbatim from the live vektor10.com page (entity corrected to Vektor10, Inc.).
 ---
 
 <Base title="Terms of Service — Vektor10">
   <Nav />
-  <main class="flex min-h-[50vh] flex-col items-center justify-center gap-4 bg-bone px-6 py-32 text-center">
-    <h1 class="font-display text-headline leading-[108%] tracking-[-0.02em] text-ink">Terms of Service.</h1>
-    <p class="eyebrow text-teal">&lt; PORTING FROM THE DESIGN CANVAS &gt;</p>
+
+  <main class="flex flex-col items-center bg-bone px-6 pb-[120px] pt-16 sm:px-[60px] sm:pt-[110px]">
+    <div class="flex w-full max-w-[760px] flex-col gap-9">
+      <header class="flex flex-col gap-3">
+        <h1 class="font-display text-[28px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">Terms of Service</h1>
+        <p class="font-mono text-body font-medium leading-[18px] text-ink/65">EFFECTIVE — FEBRUARY 1, 2026</p>
+      </header>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">Welcome to vektor10.com (the &quot;Site&quot;), operated by Vektor10, Inc. (&quot;Vektor10,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). By accessing or using this Site, you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, please do not use the Site.</p>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">1. Use of the Site</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">You may use this Site for lawful purposes only. You agree not to use the Site in any way that violates any applicable federal, state, local, or international law or regulation. You agree not to attempt to interfere with the proper functioning of the Site.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">2. Services</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">Vektor10 provides consulting and managed services related to ecommerce visibility, catalog optimization, and advertising on AI-powered shopping surfaces. The specific scope, terms, deliverables, and fees for any engagement are governed by a separate written agreement between Vektor10 and the client.</p>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">Nothing on this Site constitutes a binding offer or guarantee of specific results. All service descriptions are provided for informational purposes only.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">3. Intellectual Property</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">All content on this Site, including text, graphics, logos, images, and software, is the property of Vektor10, Inc. or its licensors and is protected by United States and international copyright, trademark, and other intellectual property laws.</p>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">You may not reproduce, distribute, modify, create derivative works from, or publicly display any content from this Site without our prior written consent.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">4. Trademarks</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">&quot;Vektor10,&quot; the Vektor10 logo, and all related names, logos, product and service names, designs, and slogans are trademarks of Vektor10, Inc.. You may not use such marks without our prior written permission.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">5. User Submissions</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">Any information you submit through the Site, including through contact forms, is subject to our Privacy Policy. You represent that any information you provide is accurate and complete.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">6. Third-Party Links</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">This Site may contain links to third-party websites or services that are not owned or controlled by Vektor10. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">7. Disclaimer of Warranties</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">THE SITE AND ALL CONTENT ARE PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. VEKTOR10 DISCLAIMS ALL WARRANTIES, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">We do not warrant that the Site will be uninterrupted, secure, or error-free, or that any defects will be corrected.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">8. Limitation of Liability</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">TO THE FULLEST EXTENT PERMITTED BY LAW, VEKTOR10 CORP SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (A) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SITE; (B) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SITE; OR (C) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">9. Indemnification</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">You agree to indemnify, defend, and hold harmless Vektor10, Inc., its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys&#x27; fees, arising out of or in any way connected with your access to or use of the Site or your violation of these Terms.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">10. Governing Law</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of law provisions. Any legal action or proceeding arising under these Terms shall be brought exclusively in the federal or state courts located in the State of Delaware.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">11. Changes to These Terms</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">We reserve the right to modify these Terms at any time. If we make material changes, we will update the &quot;Effective Date&quot; at the top of this page. Your continued use of the Site after any changes constitutes your acceptance of the new Terms.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">12. Severability</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.</p>
+      </section>
+      <section class="flex flex-col gap-3">
+        <h2 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">13. Contact</h2>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">If you have questions about these Terms, please contact us at:</p>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">Vektor10, Inc.</p>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">Email: todd@vektor10.com</p>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">Web: vektor10.com</p>
+      </section>
+    </div>
   </main>
+
   <Footer />
 </Base>

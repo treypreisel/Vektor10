@@ -1,0 +1,64 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// Blog post template — canvas-true: 760px article column, prose styles per
+// the system (30px H2s, Trey's blockquote with the ink rule), author row.
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC' }).toUpperCase();
+---
+
+<Base title={`${post.data.title} — Vektor10`} description={post.data.description}>
+  <Nav />
+
+  <main class="flex flex-col items-center bg-bone px-6 pb-[120px] pt-16 sm:px-[60px] sm:pt-[110px]">
+    <article class="flex w-full max-w-[760px] flex-col">
+      <header class="flex flex-col gap-[22px] pb-[60px]">
+        <a
+          href="/blog/"
+          class="font-mono text-body font-medium leading-[18px] text-ink/65 underline decoration-1 underline-offset-[3px] transition-colors duration-150 hover:text-teal"
+        >
+          &larr; All posts
+        </a>
+        <h1 class="font-display text-[28px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">
+          {post.data.title}
+        </h1>
+        <p class="font-mono text-body font-medium leading-[18px] text-teal">
+          {post.data.author.toUpperCase()} · {fmtDate(post.data.date)} · {post.data.readTime.toUpperCase()}
+        </p>
+      </header>
+
+      <div class="prose-v10">
+        <Content />
+      </div>
+
+      <footer class="mt-16 flex items-center gap-5 border-t border-bone-muted pt-7">
+        <img
+          src="/todd.jpg"
+          alt=""
+          width="64"
+          height="64"
+          loading="lazy"
+          class="size-16 shrink-0 rounded-full border-2 border-ink object-cover"
+        />
+        <div class="flex flex-col gap-1.5">
+          <p class="font-mono text-body font-medium leading-[18px] text-ink">{post.data.author}</p>
+          <p class="font-mono text-body font-medium leading-[18px] text-teal">{post.data.role.toUpperCase()}</p>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <Footer />
+</Base>

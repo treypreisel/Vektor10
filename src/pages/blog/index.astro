@@ -1,14 +1,68 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+
+// Blog index — canvas-true: no page heading (nav drops into content), the
+// latest post as an ink-panel featured card, remaining posts in the
+// bone-deep grid (which only renders once there's more than one post).
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const [featured, ...rest] = posts;
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric', timeZone: 'UTC' }).toUpperCase();
 ---
 
-<Base title="Notes from the new shelf — Vektor10">
+<Base title="Blog — Vektor10">
   <Nav />
-  <main class="flex min-h-[50vh] flex-col items-center justify-center gap-4 bg-bone px-6 py-32 text-center">
-    <h1 class="font-display text-headline leading-[108%] tracking-[-0.02em] text-ink">Notes from the new shelf.</h1>
-    <p class="eyebrow text-teal">&lt; PORTING FROM THE DESIGN CANVAS &gt;</p>
+
+  <main class="flex flex-col items-center bg-bone px-6 pb-[120px] pt-[110px] sm:px-[60px]">
+    <div class="flex w-full max-w-[1180px] flex-col gap-12">
+      {
+        featured && (
+          <a
+            href={`/blog/${featured.id}/`}
+            class="group flex flex-col gap-8 rounded-card border-2 border-ink bg-ink-panel p-6 sm:p-10 lg:flex-row lg:items-center lg:gap-[50px] [box-shadow:inset_-2px_4px_3px_#FFFFFF33,-2px_4px_0_0_#141413]"
+          >
+            <div class="flex h-[200px] w-full shrink-0 items-center justify-center rounded-button bg-ink sm:h-[300px] lg:w-[520px]">
+              <span class="eyebrow text-bone-muted">&lt; COVER IMAGE &gt;</span>
+            </div>
+            <div class="flex min-w-0 flex-col gap-[18px]">
+              <p class="eyebrow text-teal">&lt; FEATURED &gt;</p>
+              <h2 class="font-display text-[24px] leading-[115%] tracking-[-0.02em] text-bone sm:text-title">{featured.data.title}</h2>
+              <p class="font-mono text-body font-medium leading-[26px] text-bone-deep/65">{featured.data.description}</p>
+              <p class="font-mono text-body font-medium leading-[18px] text-bone-muted">
+                {featured.data.author.toUpperCase()} · {fmtDate(featured.data.date)} · {featured.data.readTime.toUpperCase()}
+              </p>
+              <span class="font-mono text-body font-medium leading-[18px] text-bone underline decoration-1 underline-offset-[3px] transition-colors duration-150 group-hover:text-teal">
+                Read the post
+              </span>
+            </div>
+          </a>
+        )
+      }
+
+      {
+        rest.length > 0 && (
+          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((post) => (
+              <a href={`/blog/${post.id}/`} class="group flex flex-col gap-3.5 rounded-card bg-bone-deep p-6">
+                <div class="h-[170px] rounded-button bg-ink-panel" />
+                <h3 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink transition-colors duration-150 group-hover:text-teal">
+                  {post.data.title}
+                </h3>
+                <p class="font-mono text-body font-medium leading-[18px] text-ink/65">
+                  {fmtDate(post.data.date)} · {post.data.readTime.toUpperCase()}
+                </p>
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
   </main>
+
   <Footer />
 </Base>
