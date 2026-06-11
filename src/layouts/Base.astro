@@ -1,4 +1,6 @@
 ---
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '@fontsource/cal-sans/400.css';
 import '@fontsource/geist-mono/500.css';
 import '@fontsource/geist-mono/600.css';
@@ -83,6 +85,8 @@ const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
       })}
     />
 
+    <Analytics />
+    <SpeedInsights />
     {
       GA4_ID && (
         <>
