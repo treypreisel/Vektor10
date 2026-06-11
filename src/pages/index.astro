@@ -6,6 +6,8 @@ import Stakes from '../components/sections/Stakes.astro';
 import Changes from '../components/sections/Changes.astro';
 import HowItWorks from '../components/sections/HowItWorks.astro';
 import PlanInAction from '../components/sections/PlanInAction.astro';
+import Offer from '../components/sections/Offer.astro';
+import Faq from '../components/sections/Faq.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -24,13 +26,8 @@ import Footer from '../components/Footer.astro';
   <img src="/dither-green-bone.png" alt="" class="block h-auto w-full bg-bone" loading="lazy" decoding="async" />
 
   <PlanInAction />
-
-  <section class="flex flex-col items-center gap-4 bg-bone px-6 py-32 text-center">
-    <p class="eyebrow text-teal">&lt; SECTIONS LANDING DAILY &gt;</p>
-    <p class="max-w-md font-mono text-body leading-[26px] text-ink/65">
-      The offer and the FAQ are being ported from the design canvas now.
-    </p>
-  </section>
+  <Offer />
+  <Faq />
 
   <Footer />
 </Base>

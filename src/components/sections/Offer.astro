@@ -1,0 +1,115 @@
+---
+import EmailForm from '../EmailForm.astro';
+
+// The offer ("Say No More") — ink card on bone, plan-document mock with the
+// needle-sweep reveal (spec #8): doc tilts 0°→2° while impact bars grow,
+// staggered, on first scroll into view.
+
+const checklist = [
+  'How every product you sell shows up in ChatGPT™ right now',
+  'Where competitors are getting named instead of you',
+  'The fixes that matter, ranked by impact',
+];
+
+const fixes = [
+  { num: 'FIX 01', label: 'PRODUCT DATA ACCURACY', redact: 0, bar: 286 },
+  { num: 'FIX 02', label: '', redact: 128, bar: 204 },
+  { num: 'FIX 03', label: '', redact: 96, bar: 138 },
+  { num: 'FIX 04', label: '', redact: 142, bar: 84 },
+];
+---
+
+<section id="offer" class="flex flex-col items-center bg-bone px-6 pb-[150px] pt-[60px] sm:px-[60px]" data-offer>
+  <div
+    class="flex w-full max-w-[1080px] flex-col rounded-feature border-2 border-ink bg-ink-panel p-8 sm:p-[56px] [box-shadow:inset_-2px_4px_3px_#FFFFFF33,-2px_4px_0_0_#141413]"
+  >
+    <div class="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
+      <div class="flex min-w-0 flex-1 flex-col gap-6">
+        <div class="flex flex-col gap-[5px]">
+          <p class="eyebrow text-teal">&lt; SAY NO MORE &gt;</p>
+          <h2 class="font-display text-[24px] leading-[108%] tracking-[-0.02em] text-bone sm:text-headline">
+            Your free AI commerce plan shows you...
+          </h2>
+        </div>
+
+        <ul class="flex flex-col gap-2.5">
+          {
+            checklist.map((item) => (
+              <li class="flex items-start gap-3.5">
+                <span class="shrink-0 font-mono text-body font-black leading-6 text-teal">•</span>
+                <span class="font-mono text-body font-medium leading-6 text-bone">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <EmailForm class="max-w-[546px]" />
+      </div>
+
+      {/* Plan document mock — tilts + bars sweep when the section enters view */}
+      <div
+        class="flex w-full max-w-[350px] shrink-0 flex-col gap-5 rounded-button border-2 border-ink bg-bone px-7 py-[30px] transition-transform duration-[450ms] ease-out-quart [box-shadow:-2px_4px_0_0_#141413] [transform:rotate(0deg)] [[data-offer].in_&]:[transform:rotate(2deg)]"
+      >
+        <div class="flex flex-col gap-3">
+          <p class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-ink">AI Commerce Plan</p>
+          <div class="flex items-center gap-2.5">
+            <span class="shrink-0 font-mono text-control font-medium leading-3 text-ink-faint">PREPARED FOR:</span>
+            <span class="h-2.5 w-[110px] rounded-full bg-bone-muted"></span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-[18px] border-t border-bone-muted pt-5">
+          {
+            fixes.map(({ num, label, redact, bar }, i) => (
+              <div class="flex flex-col gap-[7px]">
+                <div class="flex items-center gap-2.5">
+                  <span class="shrink-0 font-mono text-control font-medium leading-3 text-teal">{num}</span>
+                  {label ? (
+                    <span class="font-mono text-control font-medium leading-3 text-ink">{label}</span>
+                  ) : (
+                    <span class="h-2.5 rounded-full bg-bone-muted" style={`width:${redact}px`} />
+                  )}
+                </div>
+                <span
+                  class="block h-2.5 max-w-full origin-left rounded-full bg-teal transition-transform duration-[450ms] ease-out-quart [transform:scaleX(0)] [[data-offer].in_&]:[transform:scaleX(1)]"
+                  style={`width:${bar}px; transition-delay:${i * 120}ms`}
+                />
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="flex items-center gap-2.5 border-t border-bone-muted pt-[18px]">
+          <span class="font-mono text-control font-medium leading-3 text-ink-faint">DELIVERED IN WRITING</span>
+          <span class="rounded-full bg-teal px-2.5 py-[5px] font-mono text-control font-semibold leading-3 text-bone">
+            Only 48 Hours Later
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Spec #8 trigger: once, on first scroll into view; reduced-motion shows final state.
+  const offer = document.querySelector<HTMLElement>('[data-offer]');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (offer) {
+    if (reduced || !('IntersectionObserver' in window)) {
+      offer.classList.add('in');
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              offer.classList.add('in');
+              io.disconnect();
+            }
+          }
+        },
+        { threshold: 0.35 }
+      );
+      io.observe(offer);
+    }
+  }
+</script>

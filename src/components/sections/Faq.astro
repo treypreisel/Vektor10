@@ -1,0 +1,118 @@
+---
+// FAQ — the AEO asset. Questions verbatim from the canvas; accordion per
+// spec #9 (250ms height, +/− crossfade). First row (ROI) ships open.
+
+const items = [
+  {
+    q: 'How do you actually prove ROI?',
+    a: "Honestly — ChatGPT™ is a discovery surface today, not a checkout. Most shoppers finish on your site, so attribution only catches part of the impact. We treat it like SEO: a foundational channel and a first-mover land grab. It's also why we report category share — the closest thing to a real scoreboard. Brands that wait for perfectly clean ROI math will be late.",
+    open: true,
+  },
+  {
+    q: "Isn't this just another AI agency?",
+    a: 'No. The GEO crowd came from blog SEO and sells "get cited." We\'re a commerce agency — feeds, prices, product data, the digital shelf — getting your actual products bought. And we do the work; we\'re not a dashboard you have to run yourself.',
+  },
+  {
+    q: 'Will this work for my category?',
+    a: 'Best fit is products where shoppers ask multi-constraint questions ChatGPT™ is good at answering — home, kitchen, beauty, electronics, supplements, replacement parts.',
+  },
+  {
+    q: "Why ChatGPT™ only? What about Perplexity or Google's AI?",
+    a: "Focus is the point. ChatGPT™ is where the shoppers are, and a clean, correct catalog there carries to the other surfaces. We'd rather go deep on the one that matters than shallow on all of them.",
+  },
+  {
+    q: 'We already have a tracking tool.',
+    a: "Good — keep it. Tools tell you you're losing. We're the team that helps you fix it.",
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Monthly retainers scaled to your catalog, plus a percentage of managed spend if we run your placements. No annual contracts — three-month minimum. Your free audit comes back with the exact number for your catalog.',
+  },
+  {
+    q: 'What do we have to do on our side?',
+    a: "About an hour at kickoff. We need your product feed and read-only access to your catalog and analytics. From there it's done-for-you — your team approves, we ship.",
+  },
+];
+---
+
+<section id="faq" class="flex flex-col items-center bg-bone px-6 pb-[150px] pt-[40px] sm:px-[60px]">
+  <div class="flex w-full max-w-[1000px] flex-col gap-10 sm:gap-14">
+    <div class="flex flex-col gap-[5px]">
+      <p class="eyebrow text-teal">&lt; FAIR QUESTIONS &gt;</p>
+      <h2 class="font-display text-[24px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">
+        Straight answers.
+      </h2>
+    </div>
+
+    <div class="flex flex-col">
+      {
+        items.map(({ q, a, open }, i) => (
+          <div class:list={['faq-item', i > 0 && 'border-t border-bone-muted']} data-faq-item data-open={open ? 'true' : null}>
+            <h3>
+              <button
+                type="button"
+                class="flex w-full items-center justify-between gap-6 py-7 text-left sm:gap-10 sm:py-8"
+                aria-expanded={open ? 'true' : 'false'}
+                data-faq-button
+              >
+                <span class="font-display text-[20px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title sm:leading-[110%]">{q}</span>
+                <span class="relative size-[30px] shrink-0" aria-hidden="true">
+                  <span class="faq-plus absolute inset-0 font-mono text-[30px] font-medium leading-[30px] text-teal">+</span>
+                  <span class="faq-minus absolute inset-0 font-mono text-[30px] font-medium leading-[30px] text-teal">−</span>
+                </span>
+              </button>
+            </h3>
+            <div class="faq-panel grid" data-faq-panel>
+              <div class="overflow-hidden">
+                <p class="max-w-[760px] pb-8 font-mono text-body font-medium leading-6 text-ink/65 sm:pb-9">{a}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Height animation via grid rows — no measuring, no layout thrash (spec #9). */
+  .faq-panel {
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 250ms var(--ease-out-quart);
+  }
+  [data-faq-item][data-open] .faq-panel {
+    grid-template-rows: 1fr;
+  }
+  .faq-plus,
+  .faq-minus {
+    transition: opacity 150ms var(--ease-out-quart);
+  }
+  [data-faq-item][data-open] .faq-plus {
+    opacity: 0;
+  }
+  [data-faq-item]:not([data-open]) .faq-minus {
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-panel,
+    .faq-plus,
+    .faq-minus {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-faq-item]').forEach((item) => {
+    const button = item.querySelector<HTMLButtonElement>('[data-faq-button]');
+    button?.addEventListener('click', () => {
+      const open = item.hasAttribute('data-open');
+      if (open) {
+        item.removeAttribute('data-open');
+      } else {
+        item.setAttribute('data-open', 'true');
+      }
+      button.setAttribute('aria-expanded', String(!open));
+    });
+  });
+</script>
