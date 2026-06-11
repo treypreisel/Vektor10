@@ -5,6 +5,7 @@ import Hero from '../components/sections/Hero.astro';
 import Stakes from '../components/sections/Stakes.astro';
 import Changes from '../components/sections/Changes.astro';
 import HowItWorks from '../components/sections/HowItWorks.astro';
+import PlanInAction from '../components/sections/PlanInAction.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -22,10 +23,12 @@ import Footer from '../components/Footer.astro';
   {/* Trey's CP-0 dither, rendered from his exact Paper shader params */}
   <img src="/dither-green-bone.png" alt="" class="block h-auto w-full bg-bone" loading="lazy" decoding="async" />
 
+  <PlanInAction />
+
   <section class="flex flex-col items-center gap-4 bg-bone px-6 py-32 text-center">
     <p class="eyebrow text-teal">&lt; SECTIONS LANDING DAILY &gt;</p>
     <p class="max-w-md font-mono text-body leading-[26px] text-ink/65">
-      The Plan In Action, the offer, and the FAQ are being ported from the design canvas now.
+      The offer and the FAQ are being ported from the design canvas now.
     </p>
   </section>
 

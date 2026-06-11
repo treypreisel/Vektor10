@@ -1,0 +1,165 @@
+---
+// The Plan In Action — scroll-pinned pillar sequence (animation spec #3).
+// Desktop + motion-safe: section pins, the five states (intro + 4 pillars)
+// swap in place as you scroll; the arrow bobs forever and fades per-stage.
+// Mobile / reduced motion: plain stacked flow with arrows between (canvas-true).
+
+const pillars = [
+  {
+    emoji: '🔍',
+    eyebrow: 'DISCOVER',
+    title: 'Make your products findable in ChatGPT™.',
+    body: 'Feed enrollment in OpenAI™’s merchant program, plus GTINs, schema, and price accuracy fixed at the source.',
+  },
+  {
+    emoji: '🚀',
+    eyebrow: 'AMPLIFY',
+    title: 'Buy the top while it’s still cheap.',
+    body: 'We run paid placements while ChatGPT™’s ad auction is still thin, managing spend, targeting, and creative so you capture demand before the channel crowds and rates climb.',
+  },
+  {
+    emoji: '🎯',
+    eyebrow: 'OPTIMIZE',
+    title: 'Make yours the product it picks.',
+    body: 'Product-page rewrites, decision-confidence content, and FAQ blocks shipped onto your top SKUs. Product-level work, not blog SEO.',
+  },
+  {
+    emoji: '🔔',
+    eyebrow: 'MONITOR',
+    title: 'Keep your products there.',
+    body: 'Daily tracking of how your catalog shows up in ChatGPT™, with real-time alerts the moment it gets something wrong.',
+  },
+];
+---
+
+<section id="plan-in-action" class="bg-bone" data-pia>
+  <div
+    class="flex flex-col items-center gap-16 px-6 pb-20 pt-10 sm:px-[60px] motion-safe:lg:sticky motion-safe:lg:top-0 motion-safe:lg:h-svh motion-safe:lg:justify-center motion-safe:lg:gap-0 motion-safe:lg:pb-0 motion-safe:lg:pt-0"
+    data-pia-viewport
+  >
+    {/* Stage 0 — intro */}
+    <div
+      class="flex flex-col items-center gap-2.5 text-center motion-safe:lg:absolute motion-safe:lg:inset-x-0 motion-safe:lg:top-1/2 motion-safe:lg:-translate-y-1/2 motion-safe:lg:px-[60px]"
+      data-pia-stage
+    >
+      <p class="eyebrow text-teal">&lt; THE PLAN IN ACTION &gt;</p>
+      <h2 class="max-w-[880px] text-center font-display text-[24px] leading-[110%] tracking-[-0.02em] text-ink sm:text-headline">
+        Winning AI Search takes more than tracking mentions. We do the behind-the-scenes work that fixes the system
+        underneath...
+      </h2>
+      <svg width="20" height="96" viewBox="0 0 20 96" xmlns="http://www.w3.org/2000/svg" class="pia-bob mt-8 shrink-0 motion-safe:lg:hidden" aria-hidden="true">
+        <path d="M10 2 V86 M3 78 L10 86 L17 78" fill="none" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+
+    {/* Stages 1–4 — pillar boxes */}
+    {
+      pillars.map(({ emoji, eyebrow, title, body }) => (
+        <div
+          class="flex w-full flex-col items-center motion-safe:lg:absolute motion-safe:lg:inset-x-0 motion-safe:lg:top-1/2 motion-safe:lg:-translate-y-1/2 motion-safe:lg:px-[60px]"
+          data-pia-stage
+        >
+          <article class="flex w-full max-w-[800px] flex-col items-center gap-6 rounded-feature border-2 border-ink bg-bone-deep px-6 py-[34px] sm:flex-row sm:gap-8 sm:px-[44px] [box-shadow:inset_-2px_4px_3px_#F0EEE5,-2px_4px_0_0_#141413]">
+            <div class="grid size-[108px] shrink-0 place-items-center rounded-full border-2 border-ink bg-bone [box-shadow:inset_-2px_4px_0_0_#141413,-2px_4px_3px_#F0EEE5]">
+              <span class="text-[50px] leading-none" style="text-shadow: #141413A6 -2px 4px 3px;">{emoji}</span>
+            </div>
+            <div class="flex min-w-0 flex-col gap-2">
+              <p class="eyebrow text-teal">{eyebrow}</p>
+              <h3 class="font-display text-[24px] leading-[110%] tracking-[-0.015em] text-ink sm:text-title">{title}</h3>
+              <p class="font-mono text-body font-medium leading-[155%] text-ink">{body}</p>
+            </div>
+          </article>
+          <svg width="20" height="96" viewBox="0 0 20 96" xmlns="http://www.w3.org/2000/svg" class="pia-bob mt-10 shrink-0 motion-safe:lg:hidden" aria-hidden="true">
+            <path d="M10 2 V86 M3 78 L10 86 L17 78" fill="none" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+      ))
+    }
+
+    {/* Shared bobbing arrow — pinned mode only */}
+    <div class="hidden motion-safe:lg:block motion-safe:lg:absolute motion-safe:lg:bottom-10 motion-safe:lg:left-1/2 motion-safe:lg:-translate-x-1/2" data-pia-arrow>
+      <svg width="20" height="96" viewBox="0 0 20 96" xmlns="http://www.w3.org/2000/svg" class="pia-bob" aria-hidden="true">
+        <path d="M10 2 V86 M3 78 L10 86 L17 78" fill="none" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pia-bob {
+    animation: pia-bob 1.8s ease-in-out infinite;
+  }
+  @keyframes pia-bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pia-bob {
+      animation: none;
+    }
+  }
+
+  /* Pinned-mode stage states (only applied while [data-pia].pinned) */
+  [data-pia].pinned [data-pia-stage] {
+    transition:
+      opacity 400ms var(--ease-out-quart),
+      transform 400ms var(--ease-out-quart);
+  }
+  [data-pia].pinned [data-pia-stage].is-past {
+    opacity: 0;
+    transform: translateY(calc(-50% - 14px));
+    pointer-events: none;
+  }
+  [data-pia].pinned [data-pia-stage].is-future {
+    opacity: 0;
+    transform: translateY(calc(-50% + 14px));
+    pointer-events: none;
+  }
+  [data-pia-arrow] {
+    transition: opacity 200ms var(--ease-out-quart);
+  }
+</style>
+
+<script>
+  const wrap = document.querySelector<HTMLElement>('[data-pia]');
+  const stages = [...document.querySelectorAll<HTMLElement>('[data-pia-stage]')];
+  const arrow = document.querySelector<HTMLElement>('[data-pia-arrow]');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const desktop = window.matchMedia('(min-width: 1024px)').matches;
+
+  if (wrap && arrow && stages.length && desktop && !reduced) {
+    wrap.classList.add('pinned');
+    // 80vh of scroll per stage + the pinned viewport itself.
+    wrap.style.height = `${stages.length * 80 + 100}vh`;
+
+    const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const travel = wrap.offsetHeight - window.innerHeight;
+      const p = clamp(-wrap.getBoundingClientRect().top / Math.max(1, travel), 0, 0.9999);
+      const exact = p * stages.length;
+      const idx = Math.floor(exact);
+      stages.forEach((s, i) => {
+        s.classList.toggle('is-past', i < idx);
+        s.classList.toggle('is-future', i > idx);
+      });
+      const within = exact - idx;
+      arrow.style.opacity = String(idx >= stages.length - 1 ? 0 : clamp(1 - within * 1.6, 0, 1));
+    };
+    const queue = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue, { passive: true });
+    update();
+  }
+</script>
