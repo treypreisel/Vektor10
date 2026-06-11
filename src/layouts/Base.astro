@@ -51,6 +51,10 @@ const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
     <meta name="theme-color" content={themeColor} />
     <meta name="robots" content="noindex, nofollow" />
     <!-- noindex stays until the production domain cutover -->
+    <!-- SVG favicon carries its own light/dark media query; PNG is the fallback. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
