@@ -145,7 +145,12 @@ import EmailForm from '../EmailForm.astro';
   const hero = document.querySelector<HTMLElement>('[data-hero]');
   const card = document.querySelector<HTMLElement>('[data-hero-card]');
 
-  if (hero && card && !reduced) {
+  // Desktop-only: on mobile the iOS keyboard's focus-scroll triggers the fade
+  // mid-typing and there's no headroom for it anyway (same rule as the pillars'
+  // no-pin-on-mobile). Spec row #4.
+  const desktop = window.matchMedia('(min-width: 1024px)').matches;
+
+  if (hero && card && desktop && !reduced) {
     // Live rects every frame (no cached offsets): fonts/images/URL-bar
     // resizes can't strand the opacity below 1 on the way back up.
     let ticking = false;
