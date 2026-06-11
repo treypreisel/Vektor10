@@ -6,7 +6,7 @@ import EmailForm from '../EmailForm.astro';
 // card holds screen position on scroll and fades before the seam (spec #4).
 ---
 
-<section id="hero" class="relative -mt-[96px] h-[900px] w-full overflow-clip" data-hero>
+<section id="hero" class="relative -mt-[66px] h-[100svh] max-h-[900px] min-h-[600px] w-full overflow-clip sm:-mt-[96px] sm:h-[900px] sm:max-h-none" data-hero>
   <div
     class="absolute inset-0 bg-cover bg-center"
     style="background-image: url('/hero-bg.jpg');"
@@ -33,12 +33,11 @@ import EmailForm from '../EmailForm.astro';
         <span class="font-mono text-body font-medium leading-[18px] text-ink">A VantaFive Agency</span>
       </div>
 
-      <h1 class="relative flex flex-col items-center gap-0.5 text-center font-display text-[26px] leading-[112%] tracking-[-0.01em] text-ink sm:text-display">
-        <span class="flex flex-wrap items-center justify-center">
-          <span class="whitespace-pre">When shoppers ask ChatGPT which&nbsp;</span><span data-chip-slot class="inline-flex h-[1.12em] justify-start"><span data-chip class="flex h-full items-stretch gap-0.5 bg-white px-2"><span data-cycling-word class="whitespace-pre leading-[1.12em] text-teal">sofa</span><span data-caret class="w-0.5 shrink-0 self-stretch bg-ink"></span></span></span>
-          <span data-word-measure class="invisible absolute -z-10 whitespace-pre" aria-hidden="true"></span>
-        </span>
+      <h1 class="relative text-center font-display text-[26px] leading-[112%] tracking-[-0.01em] text-ink sm:text-display">
+        <span>When shoppers ask ChatGPT which&nbsp;</span><span data-chip-slot class="inline-flex h-[1.12em] justify-start align-baseline"><span data-chip class="flex h-full items-stretch gap-0.5 bg-white px-2"><span data-cycling-word class="whitespace-pre leading-[1.12em] text-teal">sofa</span><span data-caret class="w-0.5 shrink-0 self-stretch bg-ink"></span></span></span>
+        <br />
         <span>to buy, is your product the one it picks?</span>
+        <span data-word-measure class="invisible absolute -z-10 whitespace-pre" aria-hidden="true"></span>
       </h1>
 
       <p class="relative max-w-[682px] text-center font-mono text-body font-medium leading-[165%] text-ink/65">
