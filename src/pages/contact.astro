@@ -11,7 +11,31 @@ import Footer from '../components/Footer.astro';
     <div class="flex w-full max-w-[546px] flex-col gap-10">
       <h1 class="font-display text-[36px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">Let's talk.</h1>
 
-      <form name="web-inquiry" method="post" action="/api/inquiry" class="flex flex-col gap-3.5">
+      <p
+        data-banner-sent
+        hidden
+        class="rounded-button border-2 border-ink bg-teal px-5 py-4 font-mono text-body font-medium leading-6 text-bone [box-shadow:-2px_4px_0_0_#141413]"
+      >
+        Got it — your audit is in motion. It lands in writing within 48 hours.
+      </p>
+      <p
+        data-banner-error
+        hidden
+        class="rounded-button border-2 border-ink bg-bone-deep px-5 py-4 font-mono text-body font-medium leading-6 text-ink [box-shadow:-2px_4px_0_0_#141413]"
+      >
+        Something hiccuped and your message didn't send. Try again, or email todd@vektor10.com directly.
+      </p>
+
+      <form name="web-inquiry" method="post" action="/api/inquiry" class="flex flex-col gap-3.5" data-inquiry-form>
+        {/* Honeypot — humans never see it; bots that fill it get quietly dropped */}
+        <input
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          class="absolute -left-[9999px] h-0 w-0 opacity-0"
+        />
         <input type="text" name="name" required placeholder="Name" aria-label="Name" class="input-hard h-11" />
         <input type="email" name="email" required placeholder="Email" aria-label="Email" class="input-hard h-11" data-prefill-email />
         <input type="text" name="company" placeholder="Company" aria-label="Company" class="input-hard h-11" />
@@ -33,10 +57,20 @@ import Footer from '../components/Footer.astro';
 
 <script>
   // The CTA model: home/offer email forms hand off here with ?email= — prefill it.
-  const email = new URLSearchParams(location.search).get('email');
+  const params = new URLSearchParams(location.search);
+  const email = params.get('email');
   const field = document.querySelector<HTMLInputElement>('[data-prefill-email]');
   if (email && field) {
     field.value = email;
     document.querySelector<HTMLInputElement>('input[name="name"]')?.focus();
+  }
+
+  // Post-submit states from the endpoint's redirect.
+  if (params.get('sent')) {
+    document.querySelector<HTMLElement>('[data-banner-sent]')?.removeAttribute('hidden');
+    document.querySelector<HTMLElement>('[data-inquiry-form]')?.setAttribute('hidden', '');
+  }
+  if (params.get('error')) {
+    document.querySelector<HTMLElement>('[data-banner-error]')?.removeAttribute('hidden');
   }
 </script>

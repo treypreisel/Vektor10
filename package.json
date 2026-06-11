@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/vercel": "^9.0.5",
     "@fontsource/cal-sans": "^5.2.3",
     "@fontsource/geist-mono": "^5.2.8",
     "astro": "^5.0.0"
