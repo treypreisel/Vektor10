@@ -34,12 +34,8 @@ import EmailForm from '../EmailForm.astro';
       </div>
 
       <h1 class="relative flex flex-col items-center gap-0.5 text-center font-display text-[26px] leading-[112%] tracking-[-0.01em] text-ink sm:text-display">
-        <span class="flex flex-wrap items-center justify-center whitespace-pre">
-          When shoppers ask ChatGPT which{' '}
-          <span data-chip class="inline-flex items-stretch gap-0.5 overflow-hidden bg-white px-2 transition-[width] duration-200 ease-out-quart">
-            <span data-cycling-word class="inline-block whitespace-pre text-left text-teal">sofa</span>
-            <span data-caret class="w-0.5 shrink-0 self-stretch bg-ink"></span>
-          </span>
+        <span class="flex flex-wrap items-center justify-center">
+          <span class="whitespace-pre">When shoppers ask ChatGPT which&nbsp;</span><span data-chip-slot class="inline-flex h-[1.12em] justify-start"><span data-chip class="flex h-full items-stretch gap-0.5 bg-white px-2"><span data-cycling-word class="whitespace-pre leading-[1.12em] text-teal">sofa</span><span data-caret class="w-0.5 shrink-0 self-stretch bg-ink"></span></span></span>
           <span data-word-measure class="invisible absolute -z-10 whitespace-pre" aria-hidden="true"></span>
         </span>
         <span>to buy, is your product the one it picks?</span>
@@ -88,19 +84,32 @@ import EmailForm from '../EmailForm.astro';
 
   const word = document.querySelector<HTMLElement>('[data-cycling-word]');
   const caret = document.querySelector<HTMLElement>('[data-caret]');
-  const chip = document.querySelector<HTMLElement>('[data-chip]');
+  const slot = document.querySelector<HTMLElement>('[data-chip-slot]');
   const measurer = document.querySelector<HTMLElement>('[data-word-measure]');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (word && caret && chip && measurer && !reduced) {
-    // Chip hugs each completed word (canvas-true); width animates once per
-    // cycle to the larger of outgoing/incoming so keystrokes never jitter it.
-    const CHROME = 16 /* px-2 */ + 2 /* caret */ + 2 /* gap */;
-    const widthFor = (text: string) => {
-      measurer.textContent = text;
-      return measurer.offsetWidth + CHROME;
+  if (word && caret && slot && measurer && !reduced) {
+    // ZWSP keeps the chip's line box (and the caret + padding) alive when the
+    // word is fully backspaced — the chip never collapses or blinks away.
+    const ZWSP = '​';
+    const setWord = (text: string) => {
+      word.textContent = text || ZWSP;
     };
-    chip.style.width = `${widthFor(WORDS[0])}px`;
+
+    // The reservation frame holds the longest word's width so the fit-content
+    // hero card never breathes as words change. The chip inside hugs freely.
+    const CHROME = 16 /* px-2 */ + 2 /* caret */ + 2 /* gap */;
+    const sizeSlot = () => {
+      const longest = WORDS.reduce((a, b) => (b.length > a.length ? b : a));
+      measurer.textContent = longest;
+      slot.style.width = `${measurer.offsetWidth + CHROME}px`;
+    };
+    document.fonts.ready.then(sizeSlot);
+    let resizeT: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(sizeSlot, 150);
+    });
 
     let i = 0;
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -113,18 +122,15 @@ import EmailForm from '../EmailForm.astro';
         const next = WORDS[i];
 
         caret.classList.add('typing');
-        chip.style.width = `${Math.max(widthFor(current), widthFor(next))}px`;
-        await sleep(200);
         for (let n = current.length; n >= 0; n--) {
-          word.textContent = current.slice(0, n);
+          setWord(current.slice(0, n));
           await sleep(BACKSPACE_MS);
         }
         await sleep(220);
         for (let n = 1; n <= next.length; n++) {
-          word.textContent = next.slice(0, n);
+          setWord(next.slice(0, n));
           await sleep(TYPE_MS);
         }
-        chip.style.width = `${widthFor(next)}px`;
         caret.classList.remove('typing');
       }
     })();
