@@ -1,0 +1,222 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Instant Checkout — Vektor10" description="How AI Agents Are Quietly Replacing the Way We Buy. By Todd Piechowski, founder of Vektor10.">
+  <Nav />
+
+  <main class="bg-bone">
+    {/* ── Hero ── */}
+    <section class="mx-auto flex w-full max-w-[1180px] flex-col-reverse items-center gap-10 px-6 pb-16 pt-24 sm:pt-[120px] lg:flex-row lg:items-center lg:gap-[80px] lg:pb-[80px]">
+      <div class="flex flex-1 flex-col gap-6">
+        <p class="eyebrow text-teal">&lt; FROM THE FOUNDER &gt;</p>
+        <h1 class="font-display text-[32px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">
+          Instant Checkout
+        </h1>
+        <p class="font-display text-[22px] leading-[120%] tracking-[-0.015em] text-ink sm:text-title">
+          How AI Agents Are Quietly Replacing the Way We Buy
+        </p>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+          A strategic analysis of the shift from search-based commerce to agent-mediated purchasing — and what it means for business leaders navigating the transition.
+        </p>
+        <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center">
+          <div class="relative h-12 w-full shrink-0 sm:w-[180px]">
+            <a href="#get-the-book" class="btn-hard absolute -top-1 left-0.5 h-11 w-[calc(100%-2px)] whitespace-nowrap">
+              Get the Book Free
+            </a>
+          </div>
+          <a
+            href="https://www.amazon.com/dp/B0F1CQ1ZLY"
+            target="_blank"
+            rel="noopener"
+            class="font-mono text-body font-medium text-teal underline decoration-1 underline-offset-[3px] transition-colors duration-150 ease-out-quart hover:text-ink sm:ml-4"
+          >
+            Buy on Amazon &rarr;
+          </a>
+        </div>
+      </div>
+      <div class="w-full max-w-[300px] shrink-0 sm:max-w-[340px]">
+        <img
+          src="/cover-navy.png"
+          alt="Instant Checkout by Todd Piechowski"
+          width="680"
+          height="1020"
+          class="w-full rounded-card border-2 border-ink [box-shadow:-2px_4px_0_0_#141413]"
+        />
+      </div>
+    </section>
+
+    {/* ── About the Book ── */}
+    <section class="mx-auto flex w-full max-w-[760px] flex-col gap-8 px-6 pb-[80px]">
+      <div class="flex flex-col gap-[5px]">
+        <p class="eyebrow text-teal">&lt; ABOUT THE BOOK &gt;</p>
+        <h2 class="font-display text-[26px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">
+          The shopping cart was always a bridge technology.
+        </h2>
+      </div>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        A digital translation of physical retail that preserved the cognitive burden of purchasing even as it eliminated the friction of travel.
+      </p>
+      <p class="font-display text-[24px] leading-[115%] tracking-[-0.02em] text-ink sm:text-title">
+        That bridge is collapsing.
+      </p>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        AI agents are beginning to handle discovery, evaluation, and transaction on behalf of consumers. The shift won't be announced. It will simply become how commerce works.
+      </p>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        Instant Checkout maps the transition for those who need to act on it — operators running brands, builders creating the infrastructure, and investors evaluating what comes next.
+      </p>
+    </section>
+
+    {/* ── What's Inside (ink panel) ── */}
+    <div class="px-4 pb-[80px] sm:px-[68px]">
+      <section
+        class="mx-auto flex w-full flex-col items-center rounded-card border-2 border-ink bg-ink-panel px-6 py-[80px] sm:px-[60px] [box-shadow:inset_-2px_4px_3px_#FFFFFF33,-2px_4px_0_0_#141413]"
+      >
+        <div class="flex w-full max-w-[1180px] flex-col gap-12" data-stagger>
+          <div class="flex flex-col gap-[5px]" data-reveal>
+            <p class="eyebrow text-teal">&lt; WHAT'S INSIDE &gt;</p>
+            <h2 class="font-display text-[26px] leading-none tracking-[-0.02em] text-bone sm:text-headline">
+              Four parts. One argument.
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div class="flex flex-col gap-3 rounded-card bg-white/[0.06] p-8" data-reveal>
+              <span class="font-mono text-body font-medium text-teal">01</span>
+              <h3 class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-bone sm:text-title">The Shift</h3>
+              <p class="font-mono text-body font-medium leading-[26px] text-bone-deep/65">
+                Why the convergence of AI capability, infrastructure readiness, and consumer trust makes this moment different from every failed attempt at automated commerce before.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3 rounded-card bg-white/[0.06] p-8" data-reveal>
+              <span class="font-mono text-body font-medium text-teal">02</span>
+              <h3 class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-bone sm:text-title">The Mechanics</h3>
+              <p class="font-mono text-body font-medium leading-[26px] text-bone-deep/65">
+                How agents actually make purchase decisions. The new discovery layer replacing search. Trust architectures governing autonomous transactions.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3 rounded-card bg-white/[0.06] p-8" data-reveal>
+              <span class="font-mono text-body font-medium text-teal">03</span>
+              <h3 class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-bone sm:text-title">Winners and Losers</h3>
+              <p class="font-mono text-body font-medium leading-[26px] text-bone-deep/65">
+                Which businesses will thrive, which face existential threats, and how the $5 trillion e-commerce market gets reallocated.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3 rounded-card bg-white/[0.06] p-8" data-reveal>
+              <span class="font-mono text-body font-medium text-teal">04</span>
+              <h3 class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-bone sm:text-title">The Playbook</h3>
+              <p class="font-mono text-body font-medium leading-[26px] text-bone-deep/65">
+                Frameworks for business leaders to assess agent-readiness and for investors to evaluate opportunities across the value chain.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {/* ── Get the Book (email capture) ── */}
+    <section id="get-the-book" class="mx-auto w-full max-w-[760px] px-6 pb-[80px]">
+      <div
+        class="flex flex-col gap-8 rounded-feature border-2 border-ink bg-bone-deep p-8 sm:p-12 [box-shadow:inset_-2px_4px_3px_#f0eee5,-2px_4px_0_0_#141413]"
+      >
+        <div class="flex flex-col gap-[5px]">
+          <p class="eyebrow text-ink/65">&lt; FREE DOWNLOAD &gt;</p>
+          <h2 class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-ink sm:text-title">
+            Read the full book free.
+          </h2>
+        </div>
+        <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+          Drop your email and we'll send you the complete PDF — plus the Research Toolkit with an Agent Behavior Log, prompt pack, scorecard, and roadmap.
+        </p>
+        <form
+          id="bookForm"
+          action="https://formspree.io/f/xykjrqag"
+          method="POST"
+          class="flex w-full flex-col gap-2.5 sm:flex-row sm:items-center"
+        >
+          <input type="hidden" name="source" value="vektor10_book_page" />
+          <input type="hidden" name="tag" value="book_download" />
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="you@company.com"
+            aria-label="Email address"
+            class="input-hard h-11 flex-1"
+          />
+          <div class="relative h-11 w-full shrink-0 sm:w-[180px]">
+            <button type="submit" class="btn-hard absolute -top-1 left-0.5 h-11 w-[calc(100%-2px)] whitespace-nowrap">
+              Send Me the Book
+            </button>
+          </div>
+        </form>
+        <p class="font-mono text-[13px] font-medium text-ink-faint">No spam. Unsubscribe anytime.</p>
+        <div id="bookSuccess" hidden class="rounded-button border-2 border-ink bg-teal px-5 py-4 font-mono text-body font-medium leading-6 text-bone [box-shadow:-2px_4px_0_0_#141413]">
+          Check your inbox — the book and toolkit are on their way.
+        </div>
+      </div>
+    </section>
+
+    {/* ── Amazon CTA ── */}
+    <section class="mx-auto flex w-full max-w-[760px] flex-col items-center gap-6 px-6 pb-[100px] text-center">
+      <h2 class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-ink sm:text-title">
+        Prefer a Kindle copy?
+      </h2>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        Instant Checkout is available on Amazon in Kindle and paperback.
+      </p>
+      <div class="relative h-12 w-[200px]">
+        <a
+          href="https://www.amazon.com/dp/B0F1CQ1ZLY"
+          target="_blank"
+          rel="noopener"
+          class="btn-hard absolute -top-1 left-0.5 h-11 w-[calc(100%-2px)] whitespace-nowrap"
+        >
+          Buy on Amazon &rarr;
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
+
+<script>
+  const form = document.getElementById('bookForm') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const success = document.getElementById('bookSuccess');
+      const original = btn.textContent;
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          form.hidden = true;
+          form.previousElementSibling?.setAttribute('hidden', ''); // hide "no spam" line
+          success?.removeAttribute('hidden');
+        } else {
+          throw new Error('failed');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = original;
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  }
+</script>
