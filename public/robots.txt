@@ -1,5 +1,4 @@
-# Hidden until the production domain cutover; this file flips to allow-all at launch.
 User-agent: *
-Disallow: /
+Allow: /
 
 Sitemap: https://vektor10.com/sitemap-index.xml
