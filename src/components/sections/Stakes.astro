@@ -64,43 +64,4 @@ const cards = [
   </div>
 </section>
 
-<style>
-  @media (prefers-reduced-motion: no-preference) {
-    [data-reveal].pre {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    [data-reveal] {
-      transition:
-        opacity 400ms var(--ease-out-quart),
-        transform 400ms var(--ease-out-quart);
-      transition-delay: var(--reveal-delay, 0ms);
-    }
-  }
-</style>
-
-<script>
-  // Rise-and-fade reveal, staggered 90ms, fires once. Content is visible by
-  // default; the hidden state is applied by JS so no-JS never ships blank.
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll<HTMLElement>('[data-stagger]').forEach((group) => {
-    const items = [...group.querySelectorAll<HTMLElement>('[data-reveal]')];
-    if (reduced || !('IntersectionObserver' in window)) return;
-    items.forEach((el, i) => {
-      el.classList.add('pre');
-      el.style.setProperty('--reveal-delay', `${i * 90}ms`);
-    });
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            items.forEach((el) => el.classList.remove('pre'));
-            io.disconnect();
-          }
-        }
-      },
-      { threshold: 0.2 }
-    );
-    io.observe(group);
-  });
-</script>
+{/* Reveal styles + observer are shared: global.css + Base.astro */}

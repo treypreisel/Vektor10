@@ -45,5 +45,30 @@ const {
   </head>
   <body class="min-h-screen bg-bone font-mono text-ink">
     <slot />
+    <script>
+      // Shared scroll reveal for every [data-stagger] group (spec row 7).
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced && 'IntersectionObserver' in window) {
+        document.querySelectorAll<HTMLElement>('[data-stagger]').forEach((group) => {
+          const items = [...group.querySelectorAll<HTMLElement>('[data-reveal]')];
+          items.forEach((el, i) => {
+            el.classList.add('pre');
+            el.style.setProperty('--reveal-delay', `${i * 90}ms`);
+          });
+          const io = new IntersectionObserver(
+            (entries) => {
+              for (const e of entries) {
+                if (e.isIntersecting) {
+                  items.forEach((el) => el.classList.remove('pre'));
+                  io.disconnect();
+                }
+              }
+            },
+            { threshold: 0.15 }
+          );
+          io.observe(group);
+        });
+      }
+    </script>
   </body>
 </html>

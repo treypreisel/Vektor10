@@ -132,6 +132,21 @@
   }
 }
 
+/* Scroll reveal (animation spec row 7): rise + fade, staggered, once.
+   The hidden .pre state is applied by JS — no-JS never ships blank. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal].pre {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  [data-reveal] {
+    transition:
+      opacity 400ms var(--ease-out-quart),
+      transform 400ms var(--ease-out-quart);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
