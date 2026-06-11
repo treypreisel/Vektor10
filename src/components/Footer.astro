@@ -65,6 +65,8 @@ const columns = [
               {links.map(({ label, href }) => (
                 <a
                   href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener' : undefined}
                   class="font-mono text-body font-medium leading-[18px] text-bone-deep underline decoration-1 underline-offset-[3px] transition-colors duration-150 ease-out-quart hover:text-bone"
                 >
                   {label}

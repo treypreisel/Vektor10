@@ -5,12 +5,18 @@ date: 2026-06-09
 author: Todd Piechowski
 role: Founder & CEO, Vektor10
 readTime: 9 min read
+heroImage: /blog/emarketer-chart.png
+heroAlt: "eMarketer's OpenAI ad revenue forecast, 2026-2030"
 canonical: https://www.linkedin.com/pulse/emarketer-says-openai-misses-its-100-billion-ad-ill-todd-cuoyc/
 ---
 
 Open ChatGPT, ask it how to deal with dry skin, and scroll to the very bottom of the answer. Down there, wedged between the last line of the response and the "Ask anything" box, there's a little card.
 
 "The Ordinary. Sponsored. Dry Skin Treatments. Lasting hydration to the skin." A washed-out photo of some products you can't quite make out. No price. No button. No reviews. Nothing that sounds remotely like The Ordinary, a brand that built a cult by printing "Niacinamide 10% + Zinc 1%" on a $6 bottle and trusting people to care about the difference.
+
+![A sponsored card for The Ordinary at the bottom of a ChatGPT answer](/blog/chatgpt-ad-example.png)
+
+*ChatGPT Ad Example*
 
 ## Amazon ran this play already
 

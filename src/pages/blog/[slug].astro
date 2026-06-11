@@ -23,8 +23,8 @@ const fmtDate = (d: Date) =>
   <Nav />
 
   <main class="flex flex-col items-center bg-bone px-6 pb-[120px] pt-16 sm:px-[60px] sm:pt-[110px]">
-    <article class="flex w-full max-w-[760px] flex-col">
-      <header class="flex flex-col gap-[22px] pb-[60px]">
+    <article class="flex w-full max-w-[1180px] flex-col items-center">
+      <header class="flex w-full max-w-[760px] flex-col gap-[22px] pb-[60px]">
         <a
           href="/blog/"
           class="font-mono text-body font-medium leading-[18px] text-ink/65 underline decoration-1 underline-offset-[3px] transition-colors duration-150 hover:text-teal"
@@ -39,11 +39,28 @@ const fmtDate = (d: Date) =>
         </p>
       </header>
 
-      <div class="prose-v10">
+      {
+        post.data.heroImage && (
+          <figure class="flex w-full flex-col items-center gap-3.5 pb-[70px]">
+            <img
+              src={post.data.heroImage}
+              alt={post.data.heroAlt}
+              class="w-full rounded-card border-2 border-ink bg-ink-panel object-cover [box-shadow:-2px_4px_0_0_#141413]"
+            />
+            {post.data.heroAlt && (
+              <figcaption class="text-center font-mono text-body font-medium leading-[18px] text-ink/65">
+                {post.data.heroAlt}
+              </figcaption>
+            )}
+          </figure>
+        )
+      }
+
+      <div class="prose-v10 w-full max-w-[760px]">
         <Content />
       </div>
 
-      <footer class="mt-16 flex items-center gap-5 border-t border-bone-muted pt-7">
+      <footer class="mt-16 flex w-full max-w-[760px] items-center gap-5 border-t border-bone-muted pt-7">
         <img
           src="/todd.jpg"
           alt=""

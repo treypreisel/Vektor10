@@ -11,6 +11,8 @@ const blog = defineCollection({
     author: z.string().default('Todd Piechowski'),
     role: z.string().default('Founder & CEO, Vektor10'),
     readTime: z.string().default('5 min read'),
+    heroImage: z.string().optional(),
+    heroAlt: z.string().default(''),
     canonical: z.string().url().optional(),
   }),
 });

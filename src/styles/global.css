@@ -172,6 +172,23 @@
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
   }
+  /* In-body figures: image at text-column width with canvas chrome; an
+     em-only paragraph right after an image is its centered caption. */
+  .prose-v10 img {
+    display: block;
+    width: 100%;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-card);
+    background: #ffffff;
+    box-shadow: -2px 4px 0 0 var(--color-ink);
+  }
+  .prose-v10 p:has(> em:only-child) {
+    text-align: center;
+    margin-top: -10px;
+  }
+  .prose-v10 p > em:only-child {
+    font-style: normal;
+  }
 }
 
 /* Scroll reveal (animation spec row 7): rise + fade, staggered, once.

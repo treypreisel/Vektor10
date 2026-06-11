@@ -26,8 +26,12 @@ const fmtDate = (d: Date) =>
             href={`/blog/${featured.id}/`}
             class="group flex flex-col gap-8 rounded-card border-2 border-ink bg-ink-panel p-6 sm:p-10 lg:flex-row lg:items-center lg:gap-[50px] [box-shadow:inset_-2px_4px_3px_#FFFFFF33,-2px_4px_0_0_#141413]"
           >
-            <div class="flex h-[200px] w-full shrink-0 items-center justify-center rounded-button bg-ink sm:h-[300px] lg:w-[520px]">
-              <span class="eyebrow text-bone-muted">&lt; COVER IMAGE &gt;</span>
+            <div class="flex h-[200px] w-full shrink-0 items-center justify-center overflow-hidden rounded-button bg-ink sm:h-[300px] lg:w-[520px]">
+              {featured.data.heroImage ? (
+                <img src={featured.data.heroImage} alt={featured.data.heroAlt} class="h-full w-full object-cover" loading="lazy" decoding="async" />
+              ) : (
+                <span class="eyebrow text-bone-muted">&lt; COVER IMAGE &gt;</span>
+              )}
             </div>
             <div class="flex min-w-0 flex-col gap-[18px]">
               <p class="eyebrow text-teal">&lt; FEATURED &gt;</p>
@@ -49,7 +53,11 @@ const fmtDate = (d: Date) =>
           <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((post) => (
               <a href={`/blog/${post.id}/`} class="group flex flex-col gap-3.5 rounded-card bg-bone-deep p-6">
-                <div class="h-[170px] rounded-button bg-ink-panel" />
+                <div class="h-[170px] overflow-hidden rounded-button bg-ink-panel">
+                  {post.data.heroImage && (
+                    <img src={post.data.heroImage} alt={post.data.heroAlt} class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                  )}
+                </div>
                 <h3 class="font-display text-[22px] leading-[115%] tracking-[-0.02em] text-ink transition-colors duration-150 group-hover:text-teal">
                   {post.data.title}
                 </h3>

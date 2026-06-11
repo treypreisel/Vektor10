@@ -66,8 +66,8 @@ const founders = [
             Our Leadership
           </h2>
           {
-            founders.map(({ photo, alt, role, name, bio }) => (
-              <div class="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:gap-[70px]" data-reveal>
+            founders.map(({ photo, alt, role, name, bio }, i) => (
+              <div class:list={['flex flex-col items-start gap-8 lg:items-center lg:gap-[70px]', i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse']} data-reveal>
                 <img
                   src={photo}
                   alt={alt}
@@ -75,7 +75,7 @@ const founders = [
                   height="380"
                   loading="lazy"
                   decoding="async"
-                  class="size-[260px] shrink-0 rounded-full object-cover sm:size-[380px]"
+                  class="size-[260px] shrink-0 rounded-full border-2 border-ink object-cover sm:size-[380px]"
                 />
                 <div class="flex min-w-0 flex-col gap-4">
                   <div class="flex flex-col gap-[5px]">
