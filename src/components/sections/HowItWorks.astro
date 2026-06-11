@@ -1,0 +1,53 @@
+---
+// How It Works — green ground, ink header bar (raised counter-light pair),
+// three editorial plan rows with ink hairlines. Canvas-true.
+
+const steps = [
+  {
+    num: '01',
+    title: 'Your Free Plan',
+    body: 'We pull up your products in ChatGPT™, live, and show you exactly where you’re winning, losing, and leaking. In writing, within 48 hours.',
+  },
+  {
+    num: '02',
+    title: 'We Do The Work',
+    body: 'We fix your feed, your prices, and your product pages so ChatGPT™ finds and recommends you. Done for you, not handed off.',
+  },
+  {
+    num: '03',
+    title: 'Watch Your Share Climb',
+    body: 'Every week you see your visibility and category share move, with alerts the moment ChatGPT™ gets something wrong.',
+  },
+];
+---
+
+<section id="how-it-works" class="flex flex-col items-center bg-teal px-6 pb-[60px] pt-[120px] sm:px-[60px]">
+  <div class="flex w-full max-w-[1180px] flex-col" data-stagger>
+    <div
+      class="flex flex-col gap-[5px] rounded-card border-2 border-ink bg-ink-panel px-8 py-[30px] sm:px-[50px] [box-shadow:inset_-2px_4px_3px_#FFFFFF33,-2px_4px_0_0_#141413]"
+      data-reveal
+    >
+      <p class="eyebrow text-bone-muted">&lt; HOW IT WORKS &gt;</p>
+      <h2 class="font-display text-[24px] leading-[108%] tracking-[-0.02em] text-bone sm:text-headline">
+        Three moves, done for you.
+      </h2>
+    </div>
+
+    {
+      steps.map(({ num, title, body }) => (
+        <div
+          class="flex flex-col justify-between gap-5 border-b border-ink py-[50px] lg:flex-row lg:gap-0"
+          data-reveal
+        >
+          <div class="flex flex-col gap-3.5 lg:w-[500px] lg:shrink-0">
+            <p class="font-mono text-body font-medium leading-[18px] text-ink/65">{num}</p>
+            <h3 class="font-display text-[30px] leading-[106%] tracking-[-0.02em] text-ink sm:text-headline sm:leading-[106%]">{title}</h3>
+          </div>
+          <div class="lg:w-[480px] lg:shrink-0 lg:pt-1.5">
+            <p class="font-mono text-body font-medium leading-[165%] text-ink/65">{body}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
