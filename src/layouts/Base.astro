@@ -7,9 +7,15 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  /** Tints iOS Safari's status-bar area; pages with photo heroes pass their sky color. */
+  themeColor?: string;
 }
 
-const { title, description = 'Vektor10 — The 1st Full-Suite ChatGPT Commerce Agency.' } = Astro.props;
+const {
+  title,
+  description = 'Vektor10 — The 1st Full-Suite ChatGPT Commerce Agency.',
+  themeColor = '#F0EEE5',
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -19,6 +25,7 @@ const { title, description = 'Vektor10 — The 1st Full-Suite ChatGPT Commerce A
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content={themeColor} />
     <meta name="robots" content="noindex, nofollow" />
     <!-- noindex stays until the production domain cutover -->
   </head>
