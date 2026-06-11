@@ -11,19 +11,14 @@ const og = `<!doctype html><html><head><style>
 * { margin: 0; box-sizing: border-box; }
 body { width: 1200px; height: 630px; background: #F0EEE5; font-family: 'Geist Mono', monospace; position: relative; overflow: hidden;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 48px; }
-.noise { position: absolute; inset: 0; background: url('public/noise.png'); opacity: .14; }
 .logo svg { width: 470px; height: auto; display: block; position: relative; }
 .eyebrow { position: relative; font-size: 23px; font-weight: 600; letter-spacing: .14em; color: #2E926C; }
-.dither { position: absolute; left: 0; right: 0; bottom: 0; height: 52px;
-  background: url('public/dither-green-bone.png'); background-size: auto 100%; background-repeat: repeat-x; image-rendering: pixelated; }
 .url { position: absolute; top: 36px; right: 44px; font-size: 19px; font-weight: 500; color: #141413; opacity: .55; letter-spacing: .06em; }
 </style></head><body>
-  <div class="noise"></div>
   <div class="url">VEKTOR10.COM</div>
   <div class="logo">${logoDark}</div>
   <div class="eyebrow">&lt; THE 1ST FULL-SUITE CHATGPT COMMERCE AGENCY &gt;</div>
-  <div class="dither"></div>
-</body></html>`;
+  </body></html>`;
 writeFileSync('og-render.html', og);
 let page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 2 });
 await page.goto(`file://${process.cwd()}/og-render.html`);
