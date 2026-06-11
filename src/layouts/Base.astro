@@ -9,17 +9,21 @@ interface Props {
   description?: string;
   /** Tints iOS Safari's status-bar area; pages with photo heroes pass their sky color. */
   themeColor?: string;
+  /** Document canvas background — iOS paints the status-bar strip and overscroll with this.
+      Two-tone gradients let top overscroll match the hero and bottom match the footer. */
+  rootBackground?: string;
 }
 
 const {
   title,
   description = 'Vektor10 — The 1st Full-Suite ChatGPT Commerce Agency.',
   themeColor = '#F0EEE5',
+  rootBackground = '#F0EEE5',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style={`background: ${rootBackground};`}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
