@@ -1,0 +1,252 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const phases = [
+  {
+    num: '01',
+    tag: 'DISCOVER',
+    title: 'See what the AI sees.',
+    teaser: 'We pull up your products in ChatGPT\u2122 — live, on a call — and show you exactly where you are winning, losing, and leaking. Feed accuracy, price correctness, competitive share, and the editorial sources deciding your category. In writing, within 48 hours.',
+    detail: 'Free. Not a pitch deck — a plan you could hand to your board.',
+  },
+  {
+    num: '02',
+    tag: 'OPTIMIZE',
+    title: 'Fix what the AI gets wrong.',
+    teaser: 'Feeds, prices, product data, merchant enrollment, decision-confidence content, citation gaps. We do the catalog-level work that gets products found, recommended, and bought on AI surfaces. This is not blog SEO. It is product-level infrastructure.',
+    detail: 'Ongoing retainer. The work compounds every month.',
+  },
+  {
+    num: '03',
+    tag: 'MONITOR',
+    title: 'Watch the shelf move.',
+    teaser: 'Daily tracking across every SKU and every query. Score drift, price accuracy, competitive movement, citation shifts, platform changes. When something breaks, we catch it — usually before you see the report.',
+    detail: 'Live dashboard. Weekly updates. Real-time alerts.',
+  },
+  {
+    num: '04',
+    tag: 'AMPLIFY',
+    title: 'Buy the top while it is still cheap.',
+    teaser: 'Paid placements on AI surfaces, managed end-to-end. Spend management, conversational creative, audience strategy, conversion tracking. The auction is thin and the rates are low. That will not last.',
+    detail: 'We run the spend. You own the data.',
+  },
+];
+
+const fits = [
+  'You sell physical products through your own site, Amazon, or retail',
+  'Shoppers in your category ask multi-constraint questions ("best mineral sunscreen under $30 for sensitive skin")',
+  'You have 50+ SKUs and a real catalog to defend',
+  'You already invest in Amazon, Google Shopping, or digital shelf — and want to protect that work in the AI layer',
+];
+---
+
+<Base title="Services — Vektor10">
+  <Nav />
+
+  {/* ── Hero ── */}
+  <section class="flex flex-col items-center bg-bone px-6 pb-8 pt-24 sm:px-[60px] sm:pt-[150px]">
+    <div class="flex w-full max-w-[760px] flex-col gap-6">
+      <p class="eyebrow text-teal">&lt; WHAT WE DO &gt;</p>
+      <h1 class="font-display text-[26px] leading-[108%] tracking-[-0.02em] text-ink sm:text-headline">
+        We get your products found, recommended, and bought in ChatGPT&trade;.
+      </h1>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        Not brand mentions. Not blog citations. The actual product, at the right price, from the right retailer, in the answer a shopper gets when they ask what to buy. That takes catalog-level work across feeds, content, paid, and monitoring — done for you, not handed off.
+      </p>
+    </div>
+  </section>
+
+  {/* ── The Vektor Loop intro ── */}
+  <section class="flex flex-col items-center bg-bone px-6 pb-6 pt-16 sm:px-[60px]">
+    <div class="flex w-full max-w-[1000px] flex-col items-center gap-4 text-center">
+      <p class="eyebrow text-ink/65">&lt; THE VEKTOR LOOP &gt;</p>
+      <h2 class="max-w-[680px] font-display text-[24px] leading-[112%] tracking-[-0.02em] text-ink sm:text-headline">
+        Four phases. One continuous loop.
+      </h2>
+      <p class="max-w-[560px] font-mono text-body font-medium leading-[26px] text-ink/65">
+        AI commerce is not a project with an end date. The platforms change weekly, competitors optimize constantly, and feed data drifts the moment you stop watching. The loop never stops because the shelf never holds still.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Loop diagram ── */}
+  <section class="flex flex-col items-center bg-bone px-6 pb-16 pt-8 sm:px-[60px]">
+    <div class="relative mx-auto w-full max-w-[500px]" data-stagger>
+      {/* Circle connecting line */}
+      <svg viewBox="0 0 500 500" class="w-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        {/* Dashed circle */}
+        <circle cx="250" cy="250" r="180" fill="none" stroke="#2E926C" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.4" />
+        {/* Directional arrows on the circle path */}
+        <path d="M250 70 L256 80 L244 80 Z" fill="#2E926C" opacity="0.6" />
+        <path d="M430 250 L420 244 L420 256 Z" fill="#2E926C" opacity="0.6" />
+        <path d="M250 430 L244 420 L256 420 Z" fill="#2E926C" opacity="0.6" />
+        <path d="M70 250 L80 256 L80 244 Z" fill="#2E926C" opacity="0.6" />
+      </svg>
+      {/* Phase nodes — positioned at 12, 3, 6, 9 o'clock */}
+      <div class="absolute left-1/2 top-0 flex -translate-x-1/2 flex-col items-center gap-1" data-reveal>
+        <div class="flex size-[72px] items-center justify-center rounded-full border-2 border-ink bg-teal font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-bone [box-shadow:-2px_4px_0_0_#141413]">
+          01
+        </div>
+        <span class="mt-1 font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-ink">Discover</span>
+      </div>
+      <div class="absolute right-0 top-1/2 flex -translate-y-1/2 translate-x-2 flex-col items-center gap-1 sm:translate-x-0" data-reveal>
+        <div class="flex size-[72px] items-center justify-center rounded-full border-2 border-ink bg-teal font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-bone [box-shadow:-2px_4px_0_0_#141413]">
+          02
+        </div>
+        <span class="mt-1 font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-ink">Optimize</span>
+      </div>
+      <div class="absolute bottom-0 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1" data-reveal>
+        <div class="flex size-[72px] items-center justify-center rounded-full border-2 border-ink bg-teal font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-bone [box-shadow:-2px_4px_0_0_#141413]">
+          03
+        </div>
+        <span class="mt-1 font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-ink">Monitor</span>
+      </div>
+      <div class="absolute left-0 top-1/2 flex -translate-x-2 -translate-y-1/2 flex-col items-center gap-1 sm:translate-x-0" data-reveal>
+        <div class="flex size-[72px] items-center justify-center rounded-full border-2 border-ink bg-teal font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-bone [box-shadow:-2px_4px_0_0_#141413]">
+          04
+        </div>
+        <span class="mt-1 font-mono text-[11px] font-semibold uppercase tracking-[0.06em] text-ink">Amplify</span>
+      </div>
+      {/* Center label */}
+      <div class="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1">
+        <span class="font-display text-[20px] leading-none tracking-[-0.02em] text-ink sm:text-[24px]">The Loop</span>
+        <span class="font-mono text-[11px] font-medium text-ink/50">never stops</span>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Phase detail rows ── */}
+  <section class="relative flex flex-col items-center overflow-clip bg-ink px-6 py-20 sm:px-[60px] sm:py-28">
+    <svg class="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <pattern id="svc-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M0.5 0 V20 M0 0.5 H20" fill="none" stroke="#403D38" shape-rendering="crispEdges" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#svc-grid)" />
+    </svg>
+
+    <div class="relative flex w-full max-w-[1000px] flex-col" data-stagger>
+      <div
+        class="mb-8 flex flex-col gap-[5px] rounded-card border-2 border-ink bg-ink-panel px-8 py-[30px] sm:px-[50px] [box-shadow:inset_-2px_4px_3px_#FFFFFF33,-2px_4px_0_0_#141413]"
+        data-reveal
+      >
+        <p class="eyebrow text-teal">&lt; THE VEKTOR LOOP &gt;</p>
+        <h2 class="font-display text-[24px] leading-[108%] tracking-[-0.02em] text-bone sm:text-headline">
+          What each phase actually does.
+        </h2>
+      </div>
+
+      {phases.map(({ num, tag, title, teaser, detail }) => (
+        <div
+          class="flex flex-col justify-between gap-5 border-b border-dark-hairline py-[50px] lg:flex-row lg:gap-12"
+          data-reveal
+        >
+          <div class="flex flex-col gap-3.5 lg:w-[460px] lg:shrink-0">
+            <div class="flex items-center gap-3">
+              <span class="flex size-10 items-center justify-center rounded-full border-2 border-teal/40 font-mono text-[11px] font-semibold text-teal">
+                {num}
+              </span>
+              <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-teal">{tag}</span>
+            </div>
+            <h3 class="font-display text-[24px] leading-[106%] tracking-[-0.02em] text-bone sm:text-title sm:leading-[106%]">{title}</h3>
+          </div>
+          <div class="flex flex-col gap-4 lg:w-[480px] lg:shrink-0 lg:pt-3">
+            <p class="font-mono text-body font-medium leading-[165%] text-bone-muted">{teaser}</p>
+            <p class="font-mono text-body font-semibold leading-[165%] text-teal">{detail}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* ── Why this isn't finite ── */}
+  <section class="flex flex-col items-center bg-bone px-6 py-20 sm:px-[60px] sm:py-28">
+    <div class="flex w-full max-w-[760px] flex-col gap-8">
+      <div class="flex flex-col gap-[5px]">
+        <p class="eyebrow text-teal">&lt; WHY THE LOOP NEVER STOPS &gt;</p>
+        <h2 class="font-display text-[24px] leading-[112%] tracking-[-0.02em] text-ink sm:text-headline">
+          This is infrastructure management, not a consulting project.
+        </h2>
+      </div>
+      <p class="font-mono text-body font-medium leading-[26px] text-ink/65">
+        Amazon agencies retain clients for years because the marketplace changes constantly — algorithms update, competitors launch, pricing shifts, new ad types go live. AI commerce surfaces are the same, except they are changing faster because the platforms are younger and iterating weekly.
+      </p>
+      <div class="flex flex-col gap-5" data-stagger>
+        <div class="flex items-start gap-4 rounded-card border-2 border-ink bg-bone-deep px-6 py-5 [box-shadow:inset_-2px_4px_3px_#F0EEE5,-2px_4px_0_0_#141413]" data-reveal>
+          <span class="mt-0.5 font-mono text-body font-black text-teal">1</span>
+          <p class="font-mono text-body font-medium leading-[24px] text-ink/80">
+            <strong class="text-ink">Surfaces change.</strong> OpenAI's merchant feed program is months old and still adding features. Google AI Mode's citation patterns differ from six months ago.
+          </p>
+        </div>
+        <div class="flex items-start gap-4 rounded-card border-2 border-ink bg-bone-deep px-6 py-5 [box-shadow:inset_-2px_4px_3px_#F0EEE5,-2px_4px_0_0_#141413]" data-reveal>
+          <span class="mt-0.5 font-mono text-body font-black text-teal">2</span>
+          <p class="font-mono text-body font-medium leading-[24px] text-ink/80">
+            <strong class="text-ink">Scores drift.</strong> A brand at 85 readiness today can be at 72 in six weeks because a competitor optimized, an editorial source updated its picks, or a feed error crept in.
+          </p>
+        </div>
+        <div class="flex items-start gap-4 rounded-card border-2 border-ink bg-bone-deep px-6 py-5 [box-shadow:inset_-2px_4px_3px_#F0EEE5,-2px_4px_0_0_#141413]" data-reveal>
+          <span class="mt-0.5 font-mono text-body font-black text-teal">3</span>
+          <p class="font-mono text-body font-medium leading-[24px] text-ink/80">
+            <strong class="text-ink">Competitors move.</strong> New entrants and newly-optimized brands are constantly reshaping the recommendation set. Your category share erodes the moment you stop managing it.
+          </p>
+        </div>
+        <div class="flex items-start gap-4 rounded-card border-2 border-ink bg-bone-deep px-6 py-5 [box-shadow:inset_-2px_4px_3px_#F0EEE5,-2px_4px_0_0_#141413]" data-reveal>
+          <span class="mt-0.5 font-mono text-body font-black text-teal">4</span>
+          <p class="font-mono text-body font-medium leading-[24px] text-ink/80">
+            <strong class="text-ink">The ad auction matures.</strong> ChatGPT&trade; Ads launched with CPC bidding and low minimums. Rates will climb as the channel crowds. Early spend buys data and position that compounds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Best fit ── */}
+  <section class="relative flex flex-col items-center overflow-clip bg-ink px-6 py-20 sm:px-[60px] sm:py-28">
+    <svg class="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <pattern id="fit-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M0.5 0 V20 M0 0.5 H20" fill="none" stroke="#403D38" shape-rendering="crispEdges" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#fit-grid)" />
+    </svg>
+
+    <div class="relative flex w-full max-w-[760px] flex-col gap-8">
+      <div class="flex flex-col gap-[5px]">
+        <p class="eyebrow text-teal">&lt; BEST FIT &gt;</p>
+        <h2 class="font-display text-[24px] leading-[112%] tracking-[-0.02em] text-bone sm:text-headline">
+          Who this is for.
+        </h2>
+      </div>
+      <ul class="flex flex-col gap-4" data-stagger>
+        {fits.map((item) => (
+          <li class="flex items-start gap-4" data-reveal>
+            <span class="mt-1 block size-2.5 shrink-0 rounded-sm bg-teal"></span>
+            <span class="font-mono text-body font-medium leading-[24px] text-bone-muted">{item}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="font-mono text-body font-medium leading-[26px] text-bone-muted">
+        Best categories: home, kitchen, beauty, electronics, supplements, outdoor, pet, and anything where shoppers compare before they buy. If ChatGPT&trade; can answer the question, we can make sure your product is in the answer.
+      </p>
+    </div>
+  </section>
+
+  {/* ── CTA ── */}
+  <section class="flex flex-col items-center bg-bone-deep px-6 py-20 sm:px-[60px] sm:py-28">
+    <div class="flex w-full max-w-[700px] flex-col items-center gap-6 text-center">
+      <h2 class="font-display text-[24px] leading-[112%] tracking-[-0.02em] text-ink sm:text-headline">
+        Start with the free plan. See where you stand. Decide from there.
+      </h2>
+      <p class="max-w-[520px] font-mono text-body font-medium leading-[26px] text-ink/65">
+        We show you your products in ChatGPT&trade; — live, with competitive benchmarks — and deliver the plan in writing within 48 hours. No pitch deck. No commitment.
+      </p>
+      <a href="/contact" class="btn-hard mt-2 uppercase tracking-[0.08em]">Get Your Free Plan</a>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
