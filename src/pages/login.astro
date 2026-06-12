@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Client Login — Trace by Vektor10">
+  <Nav />
+
+  <main class="relative flex min-h-[calc(100svh-80px)] flex-col items-center justify-center overflow-clip bg-ink px-6 py-20">
+    {/* Tech grid background */}
+    <svg class="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <pattern id="login-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M0.5 0 V20 M0 0.5 H20" fill="none" stroke="#403D38" shape-rendering="crispEdges" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#login-grid)" />
+    </svg>
+
+    <div class="relative flex w-full max-w-[420px] flex-col items-center gap-8">
+      {/* Logo mark */}
+      <div class="flex flex-col items-center gap-3">
+        <svg viewBox="0 0 194 93" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-auto w-[100px]" aria-label="V10" role="img">
+          <path d="M0 0H18.6H21.8032H40.92V18.6C33.48 18.6 29.5941 21.39 29.5941 21.39L43.3372 59.1214C44.7728 63.0186 45.8943 66.9157 46.7019 70.8128C47.1505 68.8643 47.644 66.9157 48.1823 64.9672C48.7207 62.93 49.3487 60.9814 50.0666 59.1214L63.8096 21.39C63.8096 21.39 59.985 18.6 52.545 18.6V0H71.6006H73.005H93L55.7192 93H37.5499L0 0Z" fill="#F0EEE5" />
+          <path d="M98 17L98 80H93V93H98H118H123V80H118L118 0H98.9999L93 15V17H98Z" fill="#E6DBCB" />
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M176 46.5C176 42.2318 175.814 37.1769 175.522 31.9209L175.516 31.8458C175.514 31.8178 175.511 31.7855 175.508 31.7484C175.506 31.724 175.504 31.6976 175.501 31.6689C175.403 30.5712 175.15 29.4851 174.765 28.4336L156.295 74.6106C157.165 74.8307 158.051 74.9615 158.938 74.9912C159.148 74.9982 159.234 75 160 75C160.766 75 160.852 74.9982 161.062 74.9912C168.035 74.7579 174.882 68.281 175.501 61.3311C175.512 61.2081 175.519 61.1268 175.523 61.0732C175.814 55.8195 176 50.7665 176 46.5ZM145.235 64.5664C144.85 63.5149 144.597 62.4288 144.499 61.3311L144.477 61.0732C144.186 55.8195 144 50.7665 144 46.5C144 42.2318 144.185 37.1768 144.477 31.9209L144.485 31.8273L144.499 31.6689C145.118 24.719 151.965 18.2419 158.938 18.0088C159.148 18.0018 159.234 18 160 18C160.766 18 160.852 18.0018 161.062 18.0088C161.949 18.0385 162.835 18.1692 163.705 18.3893L145.235 64.5664ZM160.52 92.9999L160 93C159.259 93 158.888 92.9999 158.337 92.9814C142.527 92.4528 128.443 79.3529 126.646 63.6758L126.57 62.9277C126.558 62.7863 126.548 62.675 126.54 62.5848C126.533 62.4999 126.528 62.4335 126.523 62.3779L126.506 62.1035C126.204 56.666 126 51.2368 126 46.5C126 42.3553 126.156 37.681 126.397 32.9346L126.506 30.8965L126.513 30.7764L126.518 30.7018L126.523 30.6221L126.57 30.0723C127.974 14.3158 141.833 0.977661 157.586 0.0527344L158.337 0.0185547C158.888 0.00012207 159.259 0 160 0C160.741 0 161.112 0.00012207 161.663 0.0185547C177.724 0.555664 192.004 14.0659 193.43 30.0723C193.479 30.621 193.484 30.7133 193.494 30.8965C193.796 36.334 194 41.7632 194 46.5C194 51.2368 193.796 56.666 193.494 62.1035L193.477 62.3779C193.472 62.4337 193.467 62.5005 193.46 62.5862C193.452 62.6761 193.442 62.787 193.43 62.9277L193.354 63.6758C191.557 79.3529 177.473 92.4528 161.663 92.9814L160.902 92.998C160.783 92.9991 160.658 92.9996 160.52 92.9999Z" fill="#E6DBCB" />
+        </svg>
+        <p class="eyebrow text-teal">&lt; TRACE &gt;</p>
+      </div>
+
+      {/* Login card */}
+      <div class="flex w-full flex-col gap-6 rounded-card border-2 border-ink bg-ink-panel px-8 py-10 [box-shadow:inset_-2px_4px_3px_#FFFFFF33,-2px_4px_0_0_#141413]">
+        <div class="flex flex-col gap-1">
+          <h1 class="font-display text-[24px] leading-[110%] tracking-[-0.02em] text-bone">
+            Sign in to Trace
+          </h1>
+          <p class="font-mono text-body font-medium leading-[22px] text-bone-muted">
+            Access your dashboard, alerts, and category intel.
+          </p>
+        </div>
+
+        <form id="login-form" class="flex flex-col gap-4" action="https://vektor10-os.vercel.app/dashboard" method="GET">
+          <div class="flex flex-col gap-1.5">
+            <label for="email" class="font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-bone-muted">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              placeholder="you@brand.com"
+              class="w-full rounded-button border-2 border-dark-hairline bg-ink px-4 py-3 font-mono text-body font-medium text-bone placeholder:text-ink-faint transition-colors duration-150 focus:border-teal focus:outline-none"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="password" class="font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-bone-muted">
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+              class="w-full rounded-button border-2 border-dark-hairline bg-ink px-4 py-3 font-mono text-body font-medium text-bone placeholder:text-ink-faint transition-colors duration-150 focus:border-teal focus:outline-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn-hard mt-2 w-full uppercase tracking-[0.08em]"
+          >
+            Sign In
+          </button>
+        </form>
+
+        <div class="flex items-center gap-3">
+          <div class="h-px flex-1 bg-dark-hairline"></div>
+          <span class="font-mono text-[11px] font-medium text-ink-faint">OR</span>
+          <div class="h-px flex-1 bg-dark-hairline"></div>
+        </div>
+
+        <a
+          href="https://vektor10-os.vercel.app/dashboard"
+          class="flex w-full items-center justify-center gap-2 rounded-button border-2 border-dark-hairline bg-ink px-[18px] py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-bone-muted transition-colors duration-150 hover:border-teal hover:text-bone"
+        >
+          Continue with Google
+        </a>
+      </div>
+
+      <p class="font-mono text-[11px] font-medium leading-[18px] text-ink-faint">
+        Not a client yet? <a href="/contact" class="text-teal underline decoration-1 underline-offset-[3px]">Get your free plan</a>
+      </p>
+    </div>
+  </main>
+</Base>
+
+<script>
+  // Redirect all login actions to the dashboard
+  const form = document.getElementById('login-form') as HTMLFormElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    window.location.href = 'https://vektor10-os.vercel.app/dashboard';
+  });
+</script>
